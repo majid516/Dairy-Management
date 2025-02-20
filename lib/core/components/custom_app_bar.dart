@@ -8,7 +8,13 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback action;
-  const CustomAppBar({super.key, required this.title, required this.action});
+  final Widget? widget;
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    required this.action,
+    this.widget,
+  });
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
   @override
@@ -49,31 +55,44 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         Positioned(
-          bottom: 20,
-          child: Row(
-            children: [
-              Space.wSpace20,
-              InkWell(
-                onTap: action,
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  color: MyColors.whiteColor,
-                  size: 20,
-                ),
-              ),
-              Space.wSpace20,
-              Text(
-                title,
-                style: GoogleFonts.cabin(
-                  fontSize: 26,
-                  textStyle: TextStyle(
-                    color: MyColors.whiteColor,
-                    letterSpacing: .5,
-                    fontWeight: FontWeight.w900,
+          bottom: 15,
+          child: SizedBox(
+            width: ScreenSize.width,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: action,
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: MyColors.whiteColor,
+                          size: 20,
+                        ),
+                      ),
+                      Space.wSpace10,
+                      Text(
+                        title,
+                        style: GoogleFonts.cabin(
+                          fontSize: 26,
+                          textStyle: TextStyle(
+                            color: MyColors.whiteColor,
+                            letterSpacing: .5,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+
+                  if (widget != null) widget!,
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ],

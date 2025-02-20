@@ -1,8 +1,7 @@
-import 'package:diary_management/core/colors.dart';
-import 'package:diary_management/core/screen_size.dart';
+import 'package:diary_management/core/components/custom_submit_button.dart';
 import 'package:diary_management/core/services/generate_id.dart';
 import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
-import 'package:diary_management/features/drivers/view_model/bloc/drivers_bloc.dart';
+import 'package:diary_management/features/drivers/view_model/drivers_bloc/drivers_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,8 +21,8 @@ class SubmitDriverButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
+    return CustomSubmitButton(
+      action: () {
         final driver = Driver(
           id: existingDriver?.id ?? generateRandomNumber().toString(),
           name: nameController.text,
@@ -42,15 +41,6 @@ class SubmitDriverButtonWidget extends StatelessWidget {
 
         Navigator.pop(context);
       },
-      child: Container(
-        width: ScreenSize.width * 0.4,
-        height: 45,
-        decoration: BoxDecoration(
-          color: MyColors.primaryColor.withValues(alpha: 0.5),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Center(child: Text('Submit')),
-      ),
     );
   }
 }

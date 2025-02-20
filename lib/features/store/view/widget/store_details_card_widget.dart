@@ -1,31 +1,29 @@
 import 'package:diary_management/core/colors.dart';
-import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
-import 'package:diary_management/features/drivers/view/widgets/driver_details_list_tile_widget.dart';
+import 'package:diary_management/features/store/model/store_model.dart';
+import 'package:diary_management/features/store/view/widget/store_list_tile_widget.dart';
 import 'package:flutter/material.dart';
 
-class CustomDriverCard extends StatelessWidget {
-  final Driver driver;
-  final int index;
-  final Function() onEdit;
-  final Function() onDelete;
-
-  const CustomDriverCard({
+class StoreDetailsCardWidget extends StatelessWidget {
+  const StoreDetailsCardWidget({
     super.key,
-    required this.driver,
-    required this.index,
-    required this.onEdit,
-    required this.onDelete,
-
+    required this.store,
   });
+
+  final Store store;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+      margin: const EdgeInsets.symmetric(
+        vertical: 4,
+        horizontal: 10,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: MyColors.secondaryColor.withValues(alpha: 0.3),
+          color: MyColors.secondaryColor.withValues(
+            alpha: 0.3,
+          ),
           width: 1.5,
         ),
         gradient: LinearGradient(
@@ -44,11 +42,7 @@ class CustomDriverCard extends StatelessWidget {
           ),
         ],
       ),
-      child: DriverDetailsListTileWidget(
-        driver: driver,
-        onEdit: onEdit,
-        onDelete: onDelete,
-      ),
+      child: StoreListTileWidget(store: store),
     );
   }
 }

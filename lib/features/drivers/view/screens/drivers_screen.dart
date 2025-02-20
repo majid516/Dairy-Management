@@ -2,12 +2,12 @@ import 'package:diary_management/core/components/custom_app_bar.dart';
 import 'package:diary_management/features/drivers/view/widgets/add_driver_button.dart';
 import 'package:diary_management/features/drivers/view/widgets/custom_driver_card.dart';
 import 'package:diary_management/features/drivers/view/widgets/show_driver_dialog.dart';
-import 'package:diary_management/features/drivers/view_model/bloc/drivers_bloc.dart';
+import 'package:diary_management/features/drivers/view_model/drivers_bloc/drivers_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DriverScreen extends StatelessWidget {
-  const DriverScreen({super.key});
+class DriversScreen extends StatelessWidget {
+  const DriversScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class DriverScreen extends StatelessWidget {
                 },
                 loadingState:
                     () => const Center(child: CircularProgressIndicator()),
-                orElse: () => const Text('Loading...'),
+                orElse: () => Center(child: const Text('Loading...')),
               );
             },
           ),
