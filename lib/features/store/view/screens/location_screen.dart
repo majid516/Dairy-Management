@@ -1,7 +1,6 @@
 import 'package:diary_management/core/colors.dart';
 import 'package:diary_management/core/components/custom_app_bar.dart';
 import 'package:diary_management/core/components/custom_snackbar.dart';
-import 'package:diary_management/features/store/view/widget/flutter_map_w_idget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -46,11 +45,34 @@ class _LocationScreenState extends State<LocationScreen> {
           Navigator.pop(context);
         },
       ),
-      body: FlutterMapWIdget(
-        initialLocation: initialLocation,
-        selectedLocation: selectedLocation,
-        action: onMapTapped,
+      body: FlutterMap(
+      options: MapOptions(
+        initialCenter: initialLocation,
+        initialZoom: 12.0,
+        onTap: onMapTapped
       ),
+      children: [
+        TileLayer(
+          urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+          subdomains: ['a', 'b', 'c'],
+        ),
+        if (selectedLocation != null)
+          MarkerLayer(
+            markers: [
+              Marker(
+                point: selectedLocation!,
+                width: 50,
+                height: 50,
+                child: const Icon(
+                  Icons.location_pin,
+                  color: Colors.red,
+                  size: 40,
+                ),
+              ),
+            ],
+          ),
+      ],
+    )
     );
   }
 }

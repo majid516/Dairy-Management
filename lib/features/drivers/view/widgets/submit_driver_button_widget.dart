@@ -11,11 +11,12 @@ class SubmitDriverButtonWidget extends StatelessWidget {
     required this.nameController,
     required this.passwordController,
     required this.pickedImagePath,
-    this.existingDriver,
+    this.existingDriver, required this.contactController,
   });
 
   final TextEditingController nameController;
   final TextEditingController passwordController;
+  final TextEditingController contactController;
   final String? pickedImagePath;
   final Driver? existingDriver;
 
@@ -28,6 +29,7 @@ class SubmitDriverButtonWidget extends StatelessWidget {
           name: nameController.text,
           password: passwordController.text,
           image: pickedImagePath ?? '',
+          contactNumber: contactController.text,
           routes: existingDriver?.routes ?? [],
         );
 

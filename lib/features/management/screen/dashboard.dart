@@ -1,4 +1,5 @@
 import 'package:diary_management/features/drivers/view/screens/drivers_screen.dart';
+import 'package:diary_management/features/routes/view/screens/routes_screen.dart';
 import 'package:diary_management/features/store/view/screens/store_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -40,7 +41,10 @@ class DashboardScreen extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (ctx)=> StoreScreen()));
 
                 }),
-                _buildNavIcon(context, "Routes", LucideIcons.map, Colors.orange, () {}),
+                _buildNavIcon(context, "Routes", LucideIcons.map, Colors.orange, () {
+                  Navigator.push(context, MaterialPageRoute(builder: (ctx)=> RouteManagementScreen()));
+
+                }),
               ],
             ),
             SizedBox(height: 30),

@@ -43,7 +43,7 @@ class DriverDetailsListTileWidget extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        'Password: ${driver.password}',
+        'Contact: ${driver.contactNumber}',
         style: TextStyle(color: Colors.grey.shade600),
       ),
       trailing: Row(

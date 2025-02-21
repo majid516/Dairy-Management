@@ -13,7 +13,9 @@ class DriversScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<DriversBloc>().add(DriversEvent.fetchAllDrivers());
     return Scaffold(
-      appBar: CustomAppBar(title: 'Drivers Management', action: () {}),
+      appBar: CustomAppBar(title: 'Drivers Management', action: () {
+        Navigator.pop(context);
+      }),
       body: Stack(
         alignment: Alignment.center,
         children: [

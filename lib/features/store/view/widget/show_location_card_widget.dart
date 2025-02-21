@@ -4,7 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class ShowLocationCardWidget extends StatelessWidget {
-  final VoidCallback action;
+  final Function() action;
   const ShowLocationCardWidget({
     super.key,
     required this.selectedLocation,

@@ -59,7 +59,7 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
       List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
       if (placemarks.isNotEmpty) {
         setState(() {
-          address = "${placemarks.first.locality}, ${placemarks.first.country}";
+          address = "${placemarks.first.locality}";
         });
       }
     } catch (e) {
@@ -98,6 +98,3 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
     );
   }
 }
-
-
-

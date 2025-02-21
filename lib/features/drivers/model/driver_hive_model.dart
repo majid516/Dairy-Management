@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'dart:convert';
 
@@ -22,14 +23,18 @@ class Driver {
   
   @HiveField(4)
   final List<int> routes;
-
+  
+  @HiveField(5)
+  final String contactNumber;
   Driver({
     required this.id,
     required this.name,
     required this.password,
     required this.image,
     required this.routes,
+    required this.contactNumber,
   });
+
 
   Driver copyWith({
     String? id,
@@ -37,6 +42,7 @@ class Driver {
     String? password,
     String? image,
     List<int>? routes,
+    String? contactNumber,
   }) {
     return Driver(
       id: id ?? this.id,
@@ -44,6 +50,7 @@ class Driver {
       password: password ?? this.password,
       image: image ?? this.image,
       routes: routes ?? this.routes,
+      contactNumber: contactNumber ?? this.contactNumber,
     );
   }
 
@@ -54,6 +61,7 @@ class Driver {
       'password': password,
       'image': image,
       'routes': routes,
+      'contactNumber': contactNumber,
     };
   }
 
@@ -63,7 +71,8 @@ class Driver {
       name: map['name'] as String,
       password: map['password'] as String,
       image: map['image'] as String,
-      routes: List<int>.from((map['routes'] as List<int>),)
+      routes: List<int>.from((map['routes'] as List<int>),),
+      contactNumber: map['contactNumber'] as String,
     );
   }
 
@@ -73,7 +82,7 @@ class Driver {
 
   @override
   String toString() {
-    return 'Driver(id: $id, name: $name, password: $password, image: $image, routes: $routes)';
+    return 'Driver(id: $id, name: $name, password: $password, image: $image, routes: $routes, contactNumber: $contactNumber)';
   }
 
   @override
@@ -85,7 +94,8 @@ class Driver {
       other.name == name &&
       other.password == password &&
       other.image == image &&
-      listEquals(other.routes, routes);
+      listEquals(other.routes, routes) &&
+      other.contactNumber == contactNumber;
   }
 
   @override
@@ -94,6 +104,7 @@ class Driver {
       name.hashCode ^
       password.hashCode ^
       image.hashCode ^
-      routes.hashCode;
+      routes.hashCode ^
+      contactNumber.hashCode;
   }
 }

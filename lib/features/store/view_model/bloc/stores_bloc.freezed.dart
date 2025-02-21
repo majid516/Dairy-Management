@@ -679,7 +679,7 @@ mixin _$StoresState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Store> drivers) loadedState,
+    required TResult Function(List<Store> stores) loadedState,
     required TResult Function() loadingState,
     required TResult Function() errorState,
   }) =>
@@ -687,7 +687,7 @@ mixin _$StoresState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Store> drivers)? loadedState,
+    TResult? Function(List<Store> stores)? loadedState,
     TResult? Function()? loadingState,
     TResult? Function()? errorState,
   }) =>
@@ -695,7 +695,7 @@ mixin _$StoresState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Store> drivers)? loadedState,
+    TResult Function(List<Store> stores)? loadedState,
     TResult Function()? loadingState,
     TResult Function()? errorState,
     required TResult orElse(),
@@ -791,7 +791,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Store> drivers) loadedState,
+    required TResult Function(List<Store> stores) loadedState,
     required TResult Function() loadingState,
     required TResult Function() errorState,
   }) {
@@ -802,7 +802,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Store> drivers)? loadedState,
+    TResult? Function(List<Store> stores)? loadedState,
     TResult? Function()? loadingState,
     TResult? Function()? errorState,
   }) {
@@ -813,7 +813,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Store> drivers)? loadedState,
+    TResult Function(List<Store> stores)? loadedState,
     TResult Function()? loadingState,
     TResult Function()? errorState,
     required TResult orElse(),
@@ -872,7 +872,7 @@ abstract class _$$LoadedStateImplCopyWith<$Res> {
           _$LoadedStateImpl value, $Res Function(_$LoadedStateImpl) then) =
       __$$LoadedStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Store> drivers});
+  $Res call({List<Store> stores});
 }
 
 /// @nodoc
@@ -888,12 +888,12 @@ class __$$LoadedStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? drivers = null,
+    Object? stores = null,
   }) {
     return _then(_$LoadedStateImpl(
-      null == drivers
-          ? _value._drivers
-          : drivers // ignore: cast_nullable_to_non_nullable
+      null == stores
+          ? _value._stores
+          : stores // ignore: cast_nullable_to_non_nullable
               as List<Store>,
     ));
   }
@@ -902,19 +902,19 @@ class __$$LoadedStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedStateImpl implements _LoadedState {
-  const _$LoadedStateImpl(final List<Store> drivers) : _drivers = drivers;
+  const _$LoadedStateImpl(final List<Store> stores) : _stores = stores;
 
-  final List<Store> _drivers;
+  final List<Store> _stores;
   @override
-  List<Store> get drivers {
-    if (_drivers is EqualUnmodifiableListView) return _drivers;
+  List<Store> get stores {
+    if (_stores is EqualUnmodifiableListView) return _stores;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_drivers);
+    return EqualUnmodifiableListView(_stores);
   }
 
   @override
   String toString() {
-    return 'StoresState.loadedState(drivers: $drivers)';
+    return 'StoresState.loadedState(stores: $stores)';
   }
 
   @override
@@ -922,12 +922,12 @@ class _$LoadedStateImpl implements _LoadedState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedStateImpl &&
-            const DeepCollectionEquality().equals(other._drivers, _drivers));
+            const DeepCollectionEquality().equals(other._stores, _stores));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_drivers));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_stores));
 
   /// Create a copy of StoresState
   /// with the given fields replaced by the non-null parameter values.
@@ -941,35 +941,35 @@ class _$LoadedStateImpl implements _LoadedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Store> drivers) loadedState,
+    required TResult Function(List<Store> stores) loadedState,
     required TResult Function() loadingState,
     required TResult Function() errorState,
   }) {
-    return loadedState(drivers);
+    return loadedState(stores);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Store> drivers)? loadedState,
+    TResult? Function(List<Store> stores)? loadedState,
     TResult? Function()? loadingState,
     TResult? Function()? errorState,
   }) {
-    return loadedState?.call(drivers);
+    return loadedState?.call(stores);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Store> drivers)? loadedState,
+    TResult Function(List<Store> stores)? loadedState,
     TResult Function()? loadingState,
     TResult Function()? errorState,
     required TResult orElse(),
   }) {
     if (loadedState != null) {
-      return loadedState(drivers);
+      return loadedState(stores);
     }
     return orElse();
   }
@@ -1013,9 +1013,9 @@ class _$LoadedStateImpl implements _LoadedState {
 }
 
 abstract class _LoadedState implements StoresState {
-  const factory _LoadedState(final List<Store> drivers) = _$LoadedStateImpl;
+  const factory _LoadedState(final List<Store> stores) = _$LoadedStateImpl;
 
-  List<Store> get drivers;
+  List<Store> get stores;
 
   /// Create a copy of StoresState
   /// with the given fields replaced by the non-null parameter values.
@@ -1066,7 +1066,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Store> drivers) loadedState,
+    required TResult Function(List<Store> stores) loadedState,
     required TResult Function() loadingState,
     required TResult Function() errorState,
   }) {
@@ -1077,7 +1077,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Store> drivers)? loadedState,
+    TResult? Function(List<Store> stores)? loadedState,
     TResult? Function()? loadingState,
     TResult? Function()? errorState,
   }) {
@@ -1088,7 +1088,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Store> drivers)? loadedState,
+    TResult Function(List<Store> stores)? loadedState,
     TResult Function()? loadingState,
     TResult Function()? errorState,
     required TResult orElse(),
@@ -1183,7 +1183,7 @@ class _$ErrorStateImpl implements _ErrorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Store> drivers) loadedState,
+    required TResult Function(List<Store> stores) loadedState,
     required TResult Function() loadingState,
     required TResult Function() errorState,
   }) {
@@ -1194,7 +1194,7 @@ class _$ErrorStateImpl implements _ErrorState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Store> drivers)? loadedState,
+    TResult? Function(List<Store> stores)? loadedState,
     TResult? Function()? loadingState,
     TResult? Function()? errorState,
   }) {
@@ -1205,7 +1205,7 @@ class _$ErrorStateImpl implements _ErrorState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Store> drivers)? loadedState,
+    TResult Function(List<Store> stores)? loadedState,
     TResult Function()? loadingState,
     TResult Function()? errorState,
     required TResult orElse(),

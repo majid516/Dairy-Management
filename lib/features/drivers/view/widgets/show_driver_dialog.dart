@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:diary_management/core/colors.dart';
 import 'package:diary_management/core/spaces/space.dart';
 import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
 import 'package:diary_management/features/drivers/view/widgets/add_alert_dilog_elements.dart';
@@ -7,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 
 void showDriverDialog(BuildContext context, Driver? existingDriver) {
   final nameController = TextEditingController(text: existingDriver?.name);
+  final contactController = TextEditingController(text: existingDriver?.name);
   final passwordController = TextEditingController(
     text: existingDriver?.password,
   );
@@ -27,12 +29,22 @@ void showDriverDialog(BuildContext context, Driver? existingDriver) {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    existingDriver == null ? 'Add Driver' : 'Update Driver',
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        existingDriver == null ? 'Add Driver' : 'Update Driver',
+                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Icon(Icons.eco, size: 70, color: MyColors.primaryColor.withValues(alpha:  0.2)),
+                          Icon(Icons.eco, size: 50, color: MyColors.primaryColor.withValues(alpha:  0.5)),
+                        ],
+                      ),
+                    ],
                   ),
                   Space.hSpace10,
                   GestureDetector(
@@ -66,6 +78,7 @@ void showDriverDialog(BuildContext context, Driver? existingDriver) {
                     passwordController: passwordController,
                     pickedImagePath: pickedImagePath,
                     existingDriver: existingDriver,
+                    contactController: contactController,
                   ),
                 ],
               ),
