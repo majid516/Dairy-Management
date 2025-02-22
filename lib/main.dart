@@ -1,4 +1,6 @@
 import 'package:diary_management/core/screen_size.dart';
+import 'package:diary_management/features/authentication/view/screens/login_screen.dart';
+import 'package:diary_management/features/driver_tracking/view/screens/driver_tracking_screen.dart';
 import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
 import 'package:diary_management/features/drivers/services/database/driver_database_services.dart';
 import 'package:diary_management/features/drivers/view_model/drivers_bloc/drivers_bloc.dart';
@@ -14,6 +16,7 @@ import 'package:diary_management/features/store/services/database/database_servi
 import 'package:diary_management/features/store/view_model/bloc/stores_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
@@ -34,6 +37,7 @@ Future<void> main() async {
   await DriverDatabaseServices.init();
   await StoreDatabaseServices.init();
   await RoutesServices.init();
+  Geolocator.checkPermission();
   runApp(const MyApp());
 }
 
@@ -54,7 +58,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: DashboardScreen(),
+        home: LoginScreen(),
+       // home: DriverNavigationScreen(driver: Driver(id: '38112480', name: 'man', password: 'password', image: 'image', routes: [], contactNumber: 'contactNumber'),),
       ),
     );
   }

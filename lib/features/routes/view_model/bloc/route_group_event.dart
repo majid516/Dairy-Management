@@ -6,4 +6,5 @@ class RouteGroupEvent with _$RouteGroupEvent {
   const factory RouteGroupEvent.addNewGroup(RouteGroupModel routeGroup) = _AddNewGroup;
   const factory RouteGroupEvent.update(RouteGroupModel routeGroup) = _UpdateGroup;
   const factory RouteGroupEvent.deleteGroup(String id) = _DeleteGorup;
+  const factory RouteGroupEvent.fetchAssignedRoutes(String id) = _FetchAssignedRoutes;
 }

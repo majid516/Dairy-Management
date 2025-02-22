@@ -30,6 +30,12 @@
 	<string>Main</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
     <string>We need your location to fetch the address</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location for navigation.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need your location for tracking.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We need your location for tracking even in the background.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -23,7 +23,7 @@ class RoutesGroupsScreen extends StatelessWidget {
         title: 'Routes Groups',
         action: () => Navigator.pop(context),
       ),
-
+    
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: BlocBuilder<RouteGroupBloc, RouteGroupState>(
@@ -36,7 +36,7 @@ class RoutesGroupsScreen extends StatelessWidget {
                   itemCount: groups.length,
                   itemBuilder: (context, index) {
                     final group = groups[index];
-                    log(group.id);
+                 
                     return Container(
                       margin: const EdgeInsets.symmetric(
                         vertical: 4,
@@ -118,9 +118,10 @@ class RoutesGroupsScreen extends StatelessWidget {
                                                               groupName:
                                                                   group
                                                                       .groupName,
-                                                              routes:
-                                                                  group.routes,
-                                                              id: group.id,
+                                                              stores:
+                                                                  group.stores,
+                                                              id: group.id, 
+                                                             
                                                             );
                                                         context
                                                             .read<
@@ -211,7 +212,7 @@ class RoutesGroupsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        subtitle: Text('Locations: ${group.routes.join(', ')}'),
+                        subtitle: Text('Locations: ${group.stores.join(', ')}'),
                       ),
                     );
                   },

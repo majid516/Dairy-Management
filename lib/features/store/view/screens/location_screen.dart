@@ -53,8 +53,7 @@ class _LocationScreenState extends State<LocationScreen> {
       ),
       children: [
         TileLayer(
-          urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-          subdomains: ['a', 'b', 'c'],
+          urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
         ),
         if (selectedLocation != null)
           MarkerLayer(

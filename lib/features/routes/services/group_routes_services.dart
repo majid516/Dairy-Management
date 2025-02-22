@@ -37,5 +37,17 @@ static Future<List<RouteGroupModel>> fetchAllGroups() async {
     return []; 
   }
 }
+static Future<List<RouteGroupModel>> fetchAssignedRoutes(String id) async {
+  try {
+    final routesGroupBox = await Hive.openBox<RouteGroupModel>('routesGroup');
+    final data = routesGroupBox.values.where((e) => e.asignedDriver?.id == id).toList();
+
+    return data;
+  } catch (e, s) {
+    log("Error fetching groups: $e\nStack Trace: $s");
+    return [];
+  }
+}
+
 
 }

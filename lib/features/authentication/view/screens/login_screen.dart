@@ -1,11 +1,16 @@
+import 'dart:developer';
 
 import 'package:diary_management/core/colors.dart';
 import 'package:diary_management/core/components/custom_snackbar.dart';
 import 'package:diary_management/core/screen_size.dart';
+import 'package:diary_management/features/driver_tracking/view/screens/driver_tracking_screen.dart';
+import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
+import 'package:diary_management/features/drivers/services/database/driver_database_services.dart';
+import 'package:diary_management/features/management/screen/dashboard.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-   LoginScreen({super.key});
+  LoginScreen({super.key});
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passController = TextEditingController();
@@ -13,17 +18,14 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  MyColors.whiteColor,
+      backgroundColor: MyColors.whiteColor,
       body: Stack(
         children: [
           ClipPath(
             clipper: TopWaveClipper(),
             child: Container(
               height: 280,
-              decoration: BoxDecoration(
-              
-                gradient: MyColors.appGradient
-              ),
+              decoration: BoxDecoration(gradient: MyColors.appGradient),
             ),
           ),
           Positioned(
@@ -45,7 +47,7 @@ class LoginScreen extends StatelessWidget {
             child: Icon(
               Icons.eco,
               size: 100,
-              color: MyColors.whiteColor.withValues(alpha:0.5),
+              color: MyColors.whiteColor.withValues(alpha: 0.5),
             ),
           ),
           Positioned(
@@ -54,7 +56,7 @@ class LoginScreen extends StatelessWidget {
             child: Icon(
               Icons.local_florist,
               size: 80,
-              color: MyColors.whiteColor.withValues(alpha:0.4),
+              color: MyColors.whiteColor.withValues(alpha: 0.4),
             ),
           ),
           Positioned(
@@ -86,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                     decoration: _boxDecoration(),
                     child: TextField(
                       controller: nameController,
-                      decoration: _inputDecoration("Email"),
+                      decoration: _inputDecoration("User Name"),
                     ),
                   ),
                   SizedBox(height: 20),
@@ -95,11 +97,14 @@ class LoginScreen extends StatelessWidget {
                     child: TextField(
                       controller: passController,
                       obscureText: true,
-                      decoration: _inputDecoration("Password"),
+                      decoration: _inputDecoration("Login Id"),
                     ),
                   ),
                   SizedBox(height: 30),
-                  LoginButtonWidget(nameController: nameController, passController: passController),
+                  LoginButtonWidget(
+                    nameController: nameController,
+                    passController: passController,
+                  ),
                 ],
               ),
             ),
@@ -112,7 +117,7 @@ class LoginScreen extends StatelessWidget {
   InputDecoration _inputDecoration(String hintText) {
     return InputDecoration(
       hintText: hintText,
-      hintStyle: TextStyle(color: MyColors.secondaryColor,),
+      hintStyle: TextStyle(color: MyColors.secondaryColor),
       border: InputBorder.none,
       contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
     );
@@ -123,11 +128,7 @@ class LoginScreen extends StatelessWidget {
       color: Colors.white,
       borderRadius: BorderRadius.circular(20),
       boxShadow: [
-        BoxShadow(
-          color: Colors.black26,
-          blurRadius: 8,
-          offset: Offset(2, 2),
-        ),
+        BoxShadow(color: Colors.black26, blurRadius: 8, offset: Offset(2, 2)),
       ],
     );
   }
@@ -145,25 +146,61 @@ class LoginButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        if(nameController.text.isEmpty || passController.text.isEmpty){
-           showCustomSnackBar(context, 'fill reqired fields', true);
-        }else{
-          showCustomSnackBar(context, 'login successfully', false);
-        }
-      },
-      style: ElevatedButton.styleFrom(fixedSize: Size(ScreenSize.width * 0.9, 50),
-        backgroundColor: MyColors.secondaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+    return InkWell(
+     onTap: () {
+  final dName = nameController.text.trim();
+  final dPass = passController.text.trim();
+
+  if (dName.isEmpty || dPass.isEmpty) {
+    showCustomSnackBar(context, 'Fill required fields', true);
+    return;
+  }
+
+  if (dName == 'admin' && dPass == 'admin123') {
+    showCustomSnackBar(context, 'Admin login successfully', false);
+    Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => DashboardScreen()));
+    return;
+  }
+
+  final drivers = DriverDatabaseServices.getDrivers();
+
+  Driver? driver;
+
+  try {
+    driver = drivers.singleWhere(
+      (driver) => driver.name == dName && driver.password == dPass, 
+    );
+  } catch (e) {
+    driver = null;
+  }
+
+  if (driver != null) {
+    showCustomSnackBar(context, 'Login successfully', false);
+    Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => DriverNavigationScreen(driver: driver!,)));
+  } else {
+    showCustomSnackBar(context, 'User Name and Password doesn\'t match', true);
+  }
+
+  log(driver?.name ?? 'No driver');
+},
+
+      child: Container(
+        width: ScreenSize.width * 0.9,
+        height: 45,
+        decoration: BoxDecoration(
+          gradient: MyColors.appGradient,
+          borderRadius: BorderRadius.circular(15),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-        elevation: 5,
-      ),
-      child: Text(
-        "LOGIN",
-        style: TextStyle(fontSize: 18, color: MyColors.whiteColor),
+        child: const Center(
+          child: Text(
+            'Login',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: MyColors.whiteColor,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -175,9 +212,17 @@ class TopWaveClipper extends CustomClipper<Path> {
     Path path = Path();
     path.lineTo(0, size.height - 60);
     path.quadraticBezierTo(
-        size.width / 4, size.height, size.width / 2, size.height - 50);
+      size.width / 4,
+      size.height,
+      size.width / 2,
+      size.height - 50,
+    );
     path.quadraticBezierTo(
-        size.width * 3 / 4, size.height - 100, size.width, size.height - 60);
+      size.width * 3 / 4,
+      size.height - 100,
+      size.width,
+      size.height - 60,
+    );
     path.lineTo(size.width, 0);
     path.close();
     return path;
@@ -194,9 +239,17 @@ class BottomWaveClipper extends CustomClipper<Path> {
     path.moveTo(0, size.height);
     path.lineTo(0, size.height - 40);
     path.quadraticBezierTo(
-        size.width / 4, size.height - 80, size.width / 2, size.height - 50);
+      size.width / 4,
+      size.height - 80,
+      size.width / 2,
+      size.height - 50,
+    );
     path.quadraticBezierTo(
-        size.width * 3 / 4, size.height - 20, size.width, size.height - 60);
+      size.width * 3 / 4,
+      size.height - 20,
+      size.width,
+      size.height - 60,
+    );
     path.lineTo(size.width, size.height);
     path.close();
     return path;

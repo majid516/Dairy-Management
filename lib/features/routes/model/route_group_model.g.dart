@@ -19,7 +19,7 @@ class RouteGroupModelAdapter extends TypeAdapter<RouteGroupModel> {
     return RouteGroupModel(
       asignedDriver: fields[0] as Driver?,
       groupName: fields[1] as String,
-      routes: (fields[2] as List).cast<String>(),
+      stores: (fields[2] as List).cast<Store>(),
       id: fields[3] as String,
     );
   }
@@ -33,7 +33,7 @@ class RouteGroupModelAdapter extends TypeAdapter<RouteGroupModel> {
       ..writeByte(1)
       ..write(obj.groupName)
       ..writeByte(2)
-      ..write(obj.routes)
+      ..write(obj.stores)
       ..writeByte(3)
       ..write(obj.id);
   }

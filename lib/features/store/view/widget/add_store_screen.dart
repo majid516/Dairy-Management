@@ -55,17 +55,19 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
   }
 
   Future<void> getAddressFromLatLng(double lat, double lng) async {
-    try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
-      if (placemarks.isNotEmpty) {
-        setState(() {
-          address = "${placemarks.first.locality}";
-        });
-      }
-    } catch (e) {
-      log("Error fetching address: $e");
+  try {
+    List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+    if (placemarks.isNotEmpty) {
+      Placemark place = placemarks.first;
+      setState(() {
+        address = "${place.postalCode}, ${place.street}, ${place.locality}, ${place.country}";
+      });
     }
+  } catch (e) {
+    log("Error fetching address: $e");
   }
+}
+
 
   void submitStore() {
     final store = Store(

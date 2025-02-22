@@ -1,15 +1,15 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RouteSelectionCubit extends Cubit<List<String>> {
+class RouteSelectionCubit extends Cubit<List<Map<String, String>>> {
   RouteSelectionCubit() : super([]);
 
-  void toggleRoute(String routeId) {
-    final updatedRoutes = List<String>.from(state);
-    if (updatedRoutes.contains(routeId)) {
-      updatedRoutes.remove(routeId);
+  void toggleRoute(Map<String, String> route) {
+    final updatedRoutes = List<Map<String, String>>.from(state);
+    if (updatedRoutes.any((r) => r['address'] == route['address'])) {
+      updatedRoutes.removeWhere((r) => r['address'] == route['address']);
     } else {
-      updatedRoutes.add(routeId);
+      updatedRoutes.add(route);
     }
     emit(updatedRoutes);
   }

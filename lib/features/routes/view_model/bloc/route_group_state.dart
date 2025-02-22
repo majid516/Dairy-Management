@@ -6,4 +6,5 @@ class RouteGroupState with _$RouteGroupState {
   const factory RouteGroupState.loading() = _Loading;
   const factory RouteGroupState.loaded(List<RouteGroupModel> groups) = _Loaded;
   const factory RouteGroupState.error(String message) = _Error;
+  const factory RouteGroupState.assingedRouteLoaded(List<RouteGroupModel> routes) = _AssingedRouteLoaded;
 }

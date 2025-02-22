@@ -1,3 +1,4 @@
+import 'package:diary_management/core/colors.dart';
 import 'package:flutter/material.dart';
 
 void showCustomSnackBar(BuildContext context, String message, bool isError ) {
@@ -17,7 +18,7 @@ void showCustomSnackBar(BuildContext context, String message, bool isError ) {
         ),
       ],
     ),
-    backgroundColor: isError ? Colors.red : Colors.green,
+    backgroundColor: isError ? Colors.red : MyColors.secondaryColor,
     behavior: SnackBarBehavior.floating,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),

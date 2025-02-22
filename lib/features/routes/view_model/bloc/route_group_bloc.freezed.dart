@@ -22,6 +22,7 @@ mixin _$RouteGroupEvent {
     required TResult Function(RouteGroupModel routeGroup) addNewGroup,
     required TResult Function(RouteGroupModel routeGroup) update,
     required TResult Function(String id) deleteGroup,
+    required TResult Function(String id) fetchAssignedRoutes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$RouteGroupEvent {
     TResult? Function(RouteGroupModel routeGroup)? addNewGroup,
     TResult? Function(RouteGroupModel routeGroup)? update,
     TResult? Function(String id)? deleteGroup,
+    TResult? Function(String id)? fetchAssignedRoutes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$RouteGroupEvent {
     TResult Function(RouteGroupModel routeGroup)? addNewGroup,
     TResult Function(RouteGroupModel routeGroup)? update,
     TResult Function(String id)? deleteGroup,
+    TResult Function(String id)? fetchAssignedRoutes,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$RouteGroupEvent {
     required TResult Function(_AddNewGroup value) addNewGroup,
     required TResult Function(_UpdateGroup value) update,
     required TResult Function(_DeleteGorup value) deleteGroup,
+    required TResult Function(_FetchAssignedRoutes value) fetchAssignedRoutes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$RouteGroupEvent {
     TResult? Function(_AddNewGroup value)? addNewGroup,
     TResult? Function(_UpdateGroup value)? update,
     TResult? Function(_DeleteGorup value)? deleteGroup,
+    TResult? Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$RouteGroupEvent {
     TResult Function(_AddNewGroup value)? addNewGroup,
     TResult Function(_UpdateGroup value)? update,
     TResult Function(_DeleteGorup value)? deleteGroup,
+    TResult Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,6 +140,7 @@ class _$FetchAllGroupsImpl implements _FetchAllGroups {
     required TResult Function(RouteGroupModel routeGroup) addNewGroup,
     required TResult Function(RouteGroupModel routeGroup) update,
     required TResult Function(String id) deleteGroup,
+    required TResult Function(String id) fetchAssignedRoutes,
   }) {
     return fetchAllGroups();
   }
@@ -145,6 +152,7 @@ class _$FetchAllGroupsImpl implements _FetchAllGroups {
     TResult? Function(RouteGroupModel routeGroup)? addNewGroup,
     TResult? Function(RouteGroupModel routeGroup)? update,
     TResult? Function(String id)? deleteGroup,
+    TResult? Function(String id)? fetchAssignedRoutes,
   }) {
     return fetchAllGroups?.call();
   }
@@ -156,6 +164,7 @@ class _$FetchAllGroupsImpl implements _FetchAllGroups {
     TResult Function(RouteGroupModel routeGroup)? addNewGroup,
     TResult Function(RouteGroupModel routeGroup)? update,
     TResult Function(String id)? deleteGroup,
+    TResult Function(String id)? fetchAssignedRoutes,
     required TResult orElse(),
   }) {
     if (fetchAllGroups != null) {
@@ -171,6 +180,7 @@ class _$FetchAllGroupsImpl implements _FetchAllGroups {
     required TResult Function(_AddNewGroup value) addNewGroup,
     required TResult Function(_UpdateGroup value) update,
     required TResult Function(_DeleteGorup value) deleteGroup,
+    required TResult Function(_FetchAssignedRoutes value) fetchAssignedRoutes,
   }) {
     return fetchAllGroups(this);
   }
@@ -182,6 +192,7 @@ class _$FetchAllGroupsImpl implements _FetchAllGroups {
     TResult? Function(_AddNewGroup value)? addNewGroup,
     TResult? Function(_UpdateGroup value)? update,
     TResult? Function(_DeleteGorup value)? deleteGroup,
+    TResult? Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
   }) {
     return fetchAllGroups?.call(this);
   }
@@ -193,6 +204,7 @@ class _$FetchAllGroupsImpl implements _FetchAllGroups {
     TResult Function(_AddNewGroup value)? addNewGroup,
     TResult Function(_UpdateGroup value)? update,
     TResult Function(_DeleteGorup value)? deleteGroup,
+    TResult Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
     required TResult orElse(),
   }) {
     if (fetchAllGroups != null) {
@@ -279,6 +291,7 @@ class _$AddNewGroupImpl implements _AddNewGroup {
     required TResult Function(RouteGroupModel routeGroup) addNewGroup,
     required TResult Function(RouteGroupModel routeGroup) update,
     required TResult Function(String id) deleteGroup,
+    required TResult Function(String id) fetchAssignedRoutes,
   }) {
     return addNewGroup(routeGroup);
   }
@@ -290,6 +303,7 @@ class _$AddNewGroupImpl implements _AddNewGroup {
     TResult? Function(RouteGroupModel routeGroup)? addNewGroup,
     TResult? Function(RouteGroupModel routeGroup)? update,
     TResult? Function(String id)? deleteGroup,
+    TResult? Function(String id)? fetchAssignedRoutes,
   }) {
     return addNewGroup?.call(routeGroup);
   }
@@ -301,6 +315,7 @@ class _$AddNewGroupImpl implements _AddNewGroup {
     TResult Function(RouteGroupModel routeGroup)? addNewGroup,
     TResult Function(RouteGroupModel routeGroup)? update,
     TResult Function(String id)? deleteGroup,
+    TResult Function(String id)? fetchAssignedRoutes,
     required TResult orElse(),
   }) {
     if (addNewGroup != null) {
@@ -316,6 +331,7 @@ class _$AddNewGroupImpl implements _AddNewGroup {
     required TResult Function(_AddNewGroup value) addNewGroup,
     required TResult Function(_UpdateGroup value) update,
     required TResult Function(_DeleteGorup value) deleteGroup,
+    required TResult Function(_FetchAssignedRoutes value) fetchAssignedRoutes,
   }) {
     return addNewGroup(this);
   }
@@ -327,6 +343,7 @@ class _$AddNewGroupImpl implements _AddNewGroup {
     TResult? Function(_AddNewGroup value)? addNewGroup,
     TResult? Function(_UpdateGroup value)? update,
     TResult? Function(_DeleteGorup value)? deleteGroup,
+    TResult? Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
   }) {
     return addNewGroup?.call(this);
   }
@@ -338,6 +355,7 @@ class _$AddNewGroupImpl implements _AddNewGroup {
     TResult Function(_AddNewGroup value)? addNewGroup,
     TResult Function(_UpdateGroup value)? update,
     TResult Function(_DeleteGorup value)? deleteGroup,
+    TResult Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
     required TResult orElse(),
   }) {
     if (addNewGroup != null) {
@@ -433,6 +451,7 @@ class _$UpdateGroupImpl implements _UpdateGroup {
     required TResult Function(RouteGroupModel routeGroup) addNewGroup,
     required TResult Function(RouteGroupModel routeGroup) update,
     required TResult Function(String id) deleteGroup,
+    required TResult Function(String id) fetchAssignedRoutes,
   }) {
     return update(routeGroup);
   }
@@ -444,6 +463,7 @@ class _$UpdateGroupImpl implements _UpdateGroup {
     TResult? Function(RouteGroupModel routeGroup)? addNewGroup,
     TResult? Function(RouteGroupModel routeGroup)? update,
     TResult? Function(String id)? deleteGroup,
+    TResult? Function(String id)? fetchAssignedRoutes,
   }) {
     return update?.call(routeGroup);
   }
@@ -455,6 +475,7 @@ class _$UpdateGroupImpl implements _UpdateGroup {
     TResult Function(RouteGroupModel routeGroup)? addNewGroup,
     TResult Function(RouteGroupModel routeGroup)? update,
     TResult Function(String id)? deleteGroup,
+    TResult Function(String id)? fetchAssignedRoutes,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -470,6 +491,7 @@ class _$UpdateGroupImpl implements _UpdateGroup {
     required TResult Function(_AddNewGroup value) addNewGroup,
     required TResult Function(_UpdateGroup value) update,
     required TResult Function(_DeleteGorup value) deleteGroup,
+    required TResult Function(_FetchAssignedRoutes value) fetchAssignedRoutes,
   }) {
     return update(this);
   }
@@ -481,6 +503,7 @@ class _$UpdateGroupImpl implements _UpdateGroup {
     TResult? Function(_AddNewGroup value)? addNewGroup,
     TResult? Function(_UpdateGroup value)? update,
     TResult? Function(_DeleteGorup value)? deleteGroup,
+    TResult? Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
   }) {
     return update?.call(this);
   }
@@ -492,6 +515,7 @@ class _$UpdateGroupImpl implements _UpdateGroup {
     TResult Function(_AddNewGroup value)? addNewGroup,
     TResult Function(_UpdateGroup value)? update,
     TResult Function(_DeleteGorup value)? deleteGroup,
+    TResult Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -586,6 +610,7 @@ class _$DeleteGorupImpl implements _DeleteGorup {
     required TResult Function(RouteGroupModel routeGroup) addNewGroup,
     required TResult Function(RouteGroupModel routeGroup) update,
     required TResult Function(String id) deleteGroup,
+    required TResult Function(String id) fetchAssignedRoutes,
   }) {
     return deleteGroup(id);
   }
@@ -597,6 +622,7 @@ class _$DeleteGorupImpl implements _DeleteGorup {
     TResult? Function(RouteGroupModel routeGroup)? addNewGroup,
     TResult? Function(RouteGroupModel routeGroup)? update,
     TResult? Function(String id)? deleteGroup,
+    TResult? Function(String id)? fetchAssignedRoutes,
   }) {
     return deleteGroup?.call(id);
   }
@@ -608,6 +634,7 @@ class _$DeleteGorupImpl implements _DeleteGorup {
     TResult Function(RouteGroupModel routeGroup)? addNewGroup,
     TResult Function(RouteGroupModel routeGroup)? update,
     TResult Function(String id)? deleteGroup,
+    TResult Function(String id)? fetchAssignedRoutes,
     required TResult orElse(),
   }) {
     if (deleteGroup != null) {
@@ -623,6 +650,7 @@ class _$DeleteGorupImpl implements _DeleteGorup {
     required TResult Function(_AddNewGroup value) addNewGroup,
     required TResult Function(_UpdateGroup value) update,
     required TResult Function(_DeleteGorup value) deleteGroup,
+    required TResult Function(_FetchAssignedRoutes value) fetchAssignedRoutes,
   }) {
     return deleteGroup(this);
   }
@@ -634,6 +662,7 @@ class _$DeleteGorupImpl implements _DeleteGorup {
     TResult? Function(_AddNewGroup value)? addNewGroup,
     TResult? Function(_UpdateGroup value)? update,
     TResult? Function(_DeleteGorup value)? deleteGroup,
+    TResult? Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
   }) {
     return deleteGroup?.call(this);
   }
@@ -645,6 +674,7 @@ class _$DeleteGorupImpl implements _DeleteGorup {
     TResult Function(_AddNewGroup value)? addNewGroup,
     TResult Function(_UpdateGroup value)? update,
     TResult Function(_DeleteGorup value)? deleteGroup,
+    TResult Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
     required TResult orElse(),
   }) {
     if (deleteGroup != null) {
@@ -667,6 +697,166 @@ abstract class _DeleteGorup implements RouteGroupEvent {
 }
 
 /// @nodoc
+abstract class _$$FetchAssignedRoutesImplCopyWith<$Res> {
+  factory _$$FetchAssignedRoutesImplCopyWith(_$FetchAssignedRoutesImpl value,
+          $Res Function(_$FetchAssignedRoutesImpl) then) =
+      __$$FetchAssignedRoutesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$FetchAssignedRoutesImplCopyWithImpl<$Res>
+    extends _$RouteGroupEventCopyWithImpl<$Res, _$FetchAssignedRoutesImpl>
+    implements _$$FetchAssignedRoutesImplCopyWith<$Res> {
+  __$$FetchAssignedRoutesImplCopyWithImpl(_$FetchAssignedRoutesImpl _value,
+      $Res Function(_$FetchAssignedRoutesImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of RouteGroupEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$FetchAssignedRoutesImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchAssignedRoutesImpl implements _FetchAssignedRoutes {
+  const _$FetchAssignedRoutesImpl(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'RouteGroupEvent.fetchAssignedRoutes(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchAssignedRoutesImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of RouteGroupEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchAssignedRoutesImplCopyWith<_$FetchAssignedRoutesImpl> get copyWith =>
+      __$$FetchAssignedRoutesImplCopyWithImpl<_$FetchAssignedRoutesImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchAllGroups,
+    required TResult Function(RouteGroupModel routeGroup) addNewGroup,
+    required TResult Function(RouteGroupModel routeGroup) update,
+    required TResult Function(String id) deleteGroup,
+    required TResult Function(String id) fetchAssignedRoutes,
+  }) {
+    return fetchAssignedRoutes(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchAllGroups,
+    TResult? Function(RouteGroupModel routeGroup)? addNewGroup,
+    TResult? Function(RouteGroupModel routeGroup)? update,
+    TResult? Function(String id)? deleteGroup,
+    TResult? Function(String id)? fetchAssignedRoutes,
+  }) {
+    return fetchAssignedRoutes?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchAllGroups,
+    TResult Function(RouteGroupModel routeGroup)? addNewGroup,
+    TResult Function(RouteGroupModel routeGroup)? update,
+    TResult Function(String id)? deleteGroup,
+    TResult Function(String id)? fetchAssignedRoutes,
+    required TResult orElse(),
+  }) {
+    if (fetchAssignedRoutes != null) {
+      return fetchAssignedRoutes(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchAllGroups value) fetchAllGroups,
+    required TResult Function(_AddNewGroup value) addNewGroup,
+    required TResult Function(_UpdateGroup value) update,
+    required TResult Function(_DeleteGorup value) deleteGroup,
+    required TResult Function(_FetchAssignedRoutes value) fetchAssignedRoutes,
+  }) {
+    return fetchAssignedRoutes(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchAllGroups value)? fetchAllGroups,
+    TResult? Function(_AddNewGroup value)? addNewGroup,
+    TResult? Function(_UpdateGroup value)? update,
+    TResult? Function(_DeleteGorup value)? deleteGroup,
+    TResult? Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
+  }) {
+    return fetchAssignedRoutes?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchAllGroups value)? fetchAllGroups,
+    TResult Function(_AddNewGroup value)? addNewGroup,
+    TResult Function(_UpdateGroup value)? update,
+    TResult Function(_DeleteGorup value)? deleteGroup,
+    TResult Function(_FetchAssignedRoutes value)? fetchAssignedRoutes,
+    required TResult orElse(),
+  }) {
+    if (fetchAssignedRoutes != null) {
+      return fetchAssignedRoutes(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchAssignedRoutes implements RouteGroupEvent {
+  const factory _FetchAssignedRoutes(final String id) =
+      _$FetchAssignedRoutesImpl;
+
+  String get id;
+
+  /// Create a copy of RouteGroupEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FetchAssignedRoutesImplCopyWith<_$FetchAssignedRoutesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$RouteGroupState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -674,6 +864,7 @@ mixin _$RouteGroupState {
     required TResult Function() loading,
     required TResult Function(List<RouteGroupModel> groups) loaded,
     required TResult Function(String message) error,
+    required TResult Function(List<RouteGroupModel> routes) assingedRouteLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -682,6 +873,7 @@ mixin _$RouteGroupState {
     TResult? Function()? loading,
     TResult? Function(List<RouteGroupModel> groups)? loaded,
     TResult? Function(String message)? error,
+    TResult? Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -690,6 +882,7 @@ mixin _$RouteGroupState {
     TResult Function()? loading,
     TResult Function(List<RouteGroupModel> groups)? loaded,
     TResult Function(String message)? error,
+    TResult Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -699,6 +892,7 @@ mixin _$RouteGroupState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_AssingedRouteLoaded value) assingedRouteLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -707,6 +901,7 @@ mixin _$RouteGroupState {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -715,6 +910,7 @@ mixin _$RouteGroupState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -786,6 +982,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function(List<RouteGroupModel> groups) loaded,
     required TResult Function(String message) error,
+    required TResult Function(List<RouteGroupModel> routes) assingedRouteLoaded,
   }) {
     return initial();
   }
@@ -797,6 +994,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(List<RouteGroupModel> groups)? loaded,
     TResult? Function(String message)? error,
+    TResult? Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
   }) {
     return initial?.call();
   }
@@ -808,6 +1006,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(List<RouteGroupModel> groups)? loaded,
     TResult Function(String message)? error,
+    TResult Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -823,6 +1022,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_AssingedRouteLoaded value) assingedRouteLoaded,
   }) {
     return initial(this);
   }
@@ -834,6 +1034,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
   }) {
     return initial?.call(this);
   }
@@ -845,6 +1046,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -903,6 +1105,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(List<RouteGroupModel> groups) loaded,
     required TResult Function(String message) error,
+    required TResult Function(List<RouteGroupModel> routes) assingedRouteLoaded,
   }) {
     return loading();
   }
@@ -914,6 +1117,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(List<RouteGroupModel> groups)? loaded,
     TResult? Function(String message)? error,
+    TResult? Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
   }) {
     return loading?.call();
   }
@@ -925,6 +1129,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(List<RouteGroupModel> groups)? loaded,
     TResult Function(String message)? error,
+    TResult Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -940,6 +1145,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_AssingedRouteLoaded value) assingedRouteLoaded,
   }) {
     return loading(this);
   }
@@ -951,6 +1157,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
   }) {
     return loading?.call(this);
   }
@@ -962,6 +1169,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1053,6 +1261,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() loading,
     required TResult Function(List<RouteGroupModel> groups) loaded,
     required TResult Function(String message) error,
+    required TResult Function(List<RouteGroupModel> routes) assingedRouteLoaded,
   }) {
     return loaded(groups);
   }
@@ -1064,6 +1273,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? loading,
     TResult? Function(List<RouteGroupModel> groups)? loaded,
     TResult? Function(String message)? error,
+    TResult? Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
   }) {
     return loaded?.call(groups);
   }
@@ -1075,6 +1285,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? loading,
     TResult Function(List<RouteGroupModel> groups)? loaded,
     TResult Function(String message)? error,
+    TResult Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -1090,6 +1301,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_AssingedRouteLoaded value) assingedRouteLoaded,
   }) {
     return loaded(this);
   }
@@ -1101,6 +1313,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
   }) {
     return loaded?.call(this);
   }
@@ -1112,6 +1325,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -1205,6 +1419,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() loading,
     required TResult Function(List<RouteGroupModel> groups) loaded,
     required TResult Function(String message) error,
+    required TResult Function(List<RouteGroupModel> routes) assingedRouteLoaded,
   }) {
     return error(message);
   }
@@ -1216,6 +1431,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? loading,
     TResult? Function(List<RouteGroupModel> groups)? loaded,
     TResult? Function(String message)? error,
+    TResult? Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
   }) {
     return error?.call(message);
   }
@@ -1227,6 +1443,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? loading,
     TResult Function(List<RouteGroupModel> groups)? loaded,
     TResult Function(String message)? error,
+    TResult Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1242,6 +1459,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_AssingedRouteLoaded value) assingedRouteLoaded,
   }) {
     return error(this);
   }
@@ -1253,6 +1471,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
   }) {
     return error?.call(this);
   }
@@ -1264,6 +1483,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1282,5 +1502,172 @@ abstract class _Error implements RouteGroupState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AssingedRouteLoadedImplCopyWith<$Res> {
+  factory _$$AssingedRouteLoadedImplCopyWith(_$AssingedRouteLoadedImpl value,
+          $Res Function(_$AssingedRouteLoadedImpl) then) =
+      __$$AssingedRouteLoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<RouteGroupModel> routes});
+}
+
+/// @nodoc
+class __$$AssingedRouteLoadedImplCopyWithImpl<$Res>
+    extends _$RouteGroupStateCopyWithImpl<$Res, _$AssingedRouteLoadedImpl>
+    implements _$$AssingedRouteLoadedImplCopyWith<$Res> {
+  __$$AssingedRouteLoadedImplCopyWithImpl(_$AssingedRouteLoadedImpl _value,
+      $Res Function(_$AssingedRouteLoadedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of RouteGroupState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? routes = null,
+  }) {
+    return _then(_$AssingedRouteLoadedImpl(
+      null == routes
+          ? _value._routes
+          : routes // ignore: cast_nullable_to_non_nullable
+              as List<RouteGroupModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AssingedRouteLoadedImpl implements _AssingedRouteLoaded {
+  const _$AssingedRouteLoadedImpl(final List<RouteGroupModel> routes)
+      : _routes = routes;
+
+  final List<RouteGroupModel> _routes;
+  @override
+  List<RouteGroupModel> get routes {
+    if (_routes is EqualUnmodifiableListView) return _routes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_routes);
+  }
+
+  @override
+  String toString() {
+    return 'RouteGroupState.assingedRouteLoaded(routes: $routes)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AssingedRouteLoadedImpl &&
+            const DeepCollectionEquality().equals(other._routes, _routes));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_routes));
+
+  /// Create a copy of RouteGroupState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AssingedRouteLoadedImplCopyWith<_$AssingedRouteLoadedImpl> get copyWith =>
+      __$$AssingedRouteLoadedImplCopyWithImpl<_$AssingedRouteLoadedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<RouteGroupModel> groups) loaded,
+    required TResult Function(String message) error,
+    required TResult Function(List<RouteGroupModel> routes) assingedRouteLoaded,
+  }) {
+    return assingedRouteLoaded(routes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<RouteGroupModel> groups)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
+  }) {
+    return assingedRouteLoaded?.call(routes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<RouteGroupModel> groups)? loaded,
+    TResult Function(String message)? error,
+    TResult Function(List<RouteGroupModel> routes)? assingedRouteLoaded,
+    required TResult orElse(),
+  }) {
+    if (assingedRouteLoaded != null) {
+      return assingedRouteLoaded(routes);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Error value) error,
+    required TResult Function(_AssingedRouteLoaded value) assingedRouteLoaded,
+  }) {
+    return assingedRouteLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
+  }) {
+    return assingedRouteLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Error value)? error,
+    TResult Function(_AssingedRouteLoaded value)? assingedRouteLoaded,
+    required TResult orElse(),
+  }) {
+    if (assingedRouteLoaded != null) {
+      return assingedRouteLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AssingedRouteLoaded implements RouteGroupState {
+  const factory _AssingedRouteLoaded(final List<RouteGroupModel> routes) =
+      _$AssingedRouteLoadedImpl;
+
+  List<RouteGroupModel> get routes;
+
+  /// Create a copy of RouteGroupState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AssingedRouteLoadedImplCopyWith<_$AssingedRouteLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

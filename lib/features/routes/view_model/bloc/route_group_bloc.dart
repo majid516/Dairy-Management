@@ -41,5 +41,18 @@ class RouteGroupBloc extends Bloc<RouteGroupEvent, RouteGroupState> {
         
       }
     });
+    on<_FetchAssignedRoutes>((event, emit) async{
+      try {
+        emit(RouteGroupState.loading());
+        final data = await RouteGroupServices.fetchAssignedRoutes(event.id);
+        emit(RouteGroupState.assingedRouteLoaded(data));
+      } catch (e) {
+        log(e.toString());
+        emit(RouteGroupState.error(e.toString()));
+        
+      }
+    });
   }
 }
+
+

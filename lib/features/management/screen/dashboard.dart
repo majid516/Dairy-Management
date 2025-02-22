@@ -1,3 +1,5 @@
+import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/components/custom_app_bar.dart';
 import 'package:diary_management/features/drivers/view/screens/drivers_screen.dart';
 import 'package:diary_management/features/routes/view/screens/routes_screen.dart';
 import 'package:diary_management/features/store/view/screens/store_screen.dart';
@@ -10,11 +12,13 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: Text("Dashboard"),
-        backgroundColor: Colors.blueAccent,
+      backgroundColor:MyColors.whiteColor,
+            appBar: CustomAppBar(
+              backButtonNeeded: false,
+        title: 'DashBoard',
+        action: () => Navigator.pop(context),
       ),
+    
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -37,7 +41,7 @@ class DashboardScreen extends StatelessWidget {
                 _buildNavIcon(context, "Drivers", LucideIcons.user, Colors.red, () {
                   Navigator.push(context, MaterialPageRoute(builder: (ctx)=> DriversScreen()));
                 }),
-                _buildNavIcon(context, "Stores", LucideIcons.building, Colors.green, () {
+                _buildNavIcon(context, "Stores", LucideIcons.building, MyColors.secondaryColor, () {
                   Navigator.push(context, MaterialPageRoute(builder: (ctx)=> StoreScreen()));
 
                 }),
@@ -45,6 +49,7 @@ class DashboardScreen extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (ctx)=> RouteManagementScreen()));
 
                 }),
+               
               ],
             ),
             SizedBox(height: 30),
@@ -98,11 +103,12 @@ class DashboardScreen extends StatelessWidget {
           ],
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 40, color: Colors.blueAccent),
+            Icon(icon, size: 40, color: MyColors.secondaryColor),
             SizedBox(height: 10),
-            Text(title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Text(title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,),textAlign: TextAlign.center,),
             SizedBox(height: 5),
             Text(count, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black54)),
           ],
