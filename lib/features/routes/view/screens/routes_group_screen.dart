@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:diary_management/core/colors.dart';
@@ -72,6 +71,7 @@ class RoutesGroupsScreen extends StatelessWidget {
                                 (ctx) => AlertDialog(
                                   backgroundColor: MyColors.whiteColor,
                                   contentPadding: EdgeInsets.zero,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                   content: SizedBox(
                                     width: ScreenSize.width * 0.8,
                                     child: BlocBuilder<
@@ -86,87 +86,82 @@ class RoutesGroupsScreen extends StatelessWidget {
                                                   drivers.length * 70.0 > 400
                                                       ? 400
                                                       : drivers.length * 70.0,
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                  top: 10.0,
-                                                ),
-                                                child: ListView.separated(
-                                                  shrinkWrap: true,
-                                                  separatorBuilder:
-                                                      (
-                                                        context,
-                                                        index,
-                                                      ) => Divider(
-                                                        height: 0,
-                                                        color:
-                                                            MyColors
-                                                                .primaryColor,
-                                                      ),
-                                                  itemCount: drivers.length,
-                                                  itemBuilder: (
-                                                    context,
-                                                    index,
-                                                  ) {
-                                                    final driver =
-                                                        drivers[index];
-                                                    return ListTile(
-                                                      onTap: () {
-                                                        final updatedGroup =
-                                                            RouteGroupModel(
-                                                              asignedDriver:
-                                                                  driver,
-                                                              groupName:
-                                                                  group
-                                                                      .groupName,
-                                                              stores:
-                                                                  group.stores,
-                                                              id: group.id, 
-                                                             
-                                                            );
-                                                        context
-                                                            .read<
-                                                              RouteGroupBloc
-                                                            >()
-                                                            .add(
-                                                              RouteGroupEvent.update(
-                                                                updatedGroup,
-                                                              ),
-                                                            );
-                                                        Navigator.pop(
-                                                          context,
-                                                          driver.id,
-                                                        );
-                                                      },
-                                                      leading: CircleAvatar(
-                                                        radius: 30,
-                                                        backgroundImage:
-                                                            FileImage(
-                                                              File(
-                                                                driver.image,
-                                                              ),
+                                              child: ListView.separated(
+                                                shrinkWrap: true,
+                                                separatorBuilder:
+                                                    (
+                                                      context,
+                                                      index,
+                                                    ) => Divider(
+                                                      height: 0,
+                                                      color:
+                                                          MyColors
+                                                              .primaryColor,
+                                                    ),
+                                                itemCount: drivers.length,
+                                                itemBuilder: (
+                                                  context,
+                                                  index,
+                                                ) {
+                                                  final driver =
+                                                      drivers[index];
+                                                  return ListTile(
+                                                    onTap: () {
+                                                      final updatedGroup =
+                                                          RouteGroupModel(
+                                                            asignedDriver:
+                                                                driver,
+                                                            groupName:
+                                                                group
+                                                                    .groupName,
+                                                            stores:
+                                                                group.stores,
+                                                            id: group.id, 
+                                                           
+                                                          );
+                                                      context
+                                                          .read<
+                                                            RouteGroupBloc
+                                                          >()
+                                                          .add(
+                                                            RouteGroupEvent.update(
+                                                              updatedGroup,
                                                             ),
+                                                          );
+                                                      Navigator.pop(
+                                                        context,
+                                                        driver.id,
+                                                      );
+                                                    },
+                                                    leading: CircleAvatar(
+                                                      radius: 30,
+                                                      backgroundImage:
+                                                          FileImage(
+                                                            File(
+                                                              driver.image,
+                                                            ),
+                                                          ),
+                                                    ),
+                                                    title: Text(
+                                                      driver.name,
+                                                      style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 16,
+                                                        letterSpacing: 0.5,
                                                       ),
-                                                      title: Text(
-                                                        driver.name,
-                                                        style: const TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 16,
-                                                          letterSpacing: 0.5,
-                                                        ),
+                                                    ),
+                                                    subtitle: Text(
+                                                      'Contact: ${driver.contactNumber}',
+                                                      style: TextStyle(
+                                                        color:
+                                                            Colors
+                                                                .grey
+                                                                .shade600,
                                                       ),
-                                                      subtitle: Text(
-                                                        'Contact: ${driver.contactNumber}',
-                                                        style: TextStyle(
-                                                          color:
-                                                              Colors
-                                                                  .grey
-                                                                  .shade600,
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
+                                                    ),
+                                                  );
+                                                },
                                               ),
                                             );
                                           },
@@ -196,12 +191,26 @@ class RoutesGroupsScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (group.asignedDriver != null)
-                              Text(
-                                group.asignedDriver!.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    group.asignedDriver!.name,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Container(width: ScreenSize.width*0.4,height: 30,decoration: BoxDecoration(
+                                    color: MyColors.primaryColor.withValues(alpha: 0.3),
+                                    borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  child: Center(child: Text('Driver Assigned',style: TextStyle(color: MyColors.secondaryColor,fontWeight: FontWeight.w500),),),
+                                  )
+                                ],
                               ),
                             Text(
                               group.groupName,
@@ -212,7 +221,15 @@ class RoutesGroupsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        subtitle: Text('Locations: ${group.stores.join(', ')}'),
+                      subtitle: ListView.builder(
+  shrinkWrap: true,
+  physics: NeverScrollableScrollPhysics(), 
+  itemCount: group.stores.length, 
+  itemBuilder: (context, index) {
+    return Text('Locations: ${group.stores[index].address}');
+  },
+),
+
                       ),
                     );
                   },

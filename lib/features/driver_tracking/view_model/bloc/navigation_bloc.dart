@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:diary_management/features/routes/model/route_group_model.dart';
+import 'package:diary_management/features/routes/services/group_routes_services.dart';
 import 'package:diary_management/features/store/model/store_model.dart';
+import 'package:diary_management/features/store/services/database/database_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -20,7 +22,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
     on<FetchRoutesEvent>((event, emit) async {
       Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
       LatLng currentLocation = LatLng(position.latitude, position.longitude);
-
+//
       final List<Store> stores = await fetchStores(event.driverId);
 
       // Add marker for the current location
@@ -71,26 +73,15 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       }
     });
 
-    on<UpdateVisitStatusEvent>((event, emit) {
-      final state = this.state;
-      if (state is NavigationLoaded) {
-        final updatedStores = state.stores.map((store) {
-          if (store.id == event.store.id) {
-            return Store(
-              id: store.id,
-              name: store.name,
-              address: store.address,
-              contactNumber: store.contactNumber,
-              latitude: store.latitude,
-              longitude: store.longitude,
-              isVisited: true,
-              visitTimestamp: DateTime.now(),
-            );
-          }
-          return store;
-        }).toList();
-        emit(NavigationState.loaded(state.currentLocation, state.polylines, state.markers, updatedStores));
-      }
+    on<UpdateVisitStatusEvent>((event, emit) async{
+     try {
+     await StoreDatabaseServices.updateStore(event.store.id, event.store);
+  await RouteGroupServices.updateVisited( event.driverId,event.store.id, event.store); 
+  add(FetchRoutesEvent(event.driverId));
+     } catch (e) {
+       
+     }
+    
     });
   }
 }
@@ -134,63 +125,58 @@ double? parseCoordinate(dynamic value) {
 }
 
 
-Future<List<Store>> fetchStores(String driverId) async {
-  log(driverId);
-  // try {
-  //   final routesGroupBox = await Hive.openBox<RouteGroupModel>('routesGroup');
-  //   final assignedGroups = routesGroupBox.values.where((e) => e.asignedDriver?.id == '38112480').toList();
+ Future<List<Store>> fetchStores(String driverId) async {
+  try {
+    final routesGroupBox = await Hive.openBox<RouteGroupModel>('routesGroup');
+    final assignedGroups = routesGroupBox.values.where((e) => e.asignedDriver?.id == driverId).toList();
 
-  //   List<Store> stores = [];
+    List<Store> stores = [];
 
-  //   for (var group in assignedGroups) {
-  //     for (var route in group.stores) {
-  //       // Extract required details from the route map
-  //       String name = route["name"] ?? "Unknown Store";
-  //       String address = route["address"] ?? "Unknown Address";
-  //       String contact = route["contact"] ?? "N/A";
-  //       double latitude = double.tryParse(route["latitude"] ?? "") ?? 0.0;
-  //       double longitude = double.tryParse(route["longitude"] ?? "") ?? 0.0;
-  //    log(route['latitude']?? 'no value');
-  //       stores.add(Store(
-  //         id: group.id, // Using group ID, modify if each store has a unique ID
-  //         name: name,
-  //         address: address,
-  //         contactNumber: contact,
-  //         latitude: latitude,
-  //         longitude: longitude,
-  //         isVisited: false,
-  //         visitTimestamp: null,
-  //       ));
-  //     }
-  //   }
-
-  //   return stores;
-  // } catch (e, s) {
-  //   log("Error fetching assigned routes: $e\nStack Trace: $s");
-  //   return [];
-  // }
-  return [];
+    for (var group in assignedGroups) {
+  log("Group ID: ${group.id} has ${group.stores.first.latitude} stores");
+  stores.addAll(group.stores);
 }
 
+
+    return stores;
+  } catch (e, s) {
+    log("Error fetching assigned routes: $e\nStack Trace: $s");
+    return [];
+  }
+ }
 
 Future<LatLng> getCurrentLocation() async {
   bool serviceEnabled;
   LocationPermission permission;
 
+  // Check if location services are enabled
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
-    return LatLng(0.0, 0.0); // Default if location services are off
+    debugPrint("Location services are disabled.");
+    return LatLng(0.0, 0.0);
   }
 
+  // Check and request permission
   permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
-      return LatLng(0.0, 0.0); // Default if permission is denied
+      debugPrint("Location permission denied.");
+      return LatLng(0.0, 0.0);
     }
   }
 
-  Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high);
-  return LatLng(position.latitude, position.longitude);
+  if (permission == LocationPermission.deniedForever) {
+    debugPrint("Location permission permanently denied. Ask user to enable it in settings.");
+    return LatLng(0.0, 0.0);
+  }
+
+  // Fetch location
+  try {
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    return LatLng(position.latitude, position.longitude);
+  } catch (e) {
+    debugPrint("Failed to get location: $e");
+    return LatLng(0.0, 0.0);
+  }
 }

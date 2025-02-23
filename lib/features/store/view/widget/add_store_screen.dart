@@ -1,6 +1,9 @@
 import 'dart:developer';
 import 'package:diary_management/core/colors.dart';
 import 'package:diary_management/core/components/custom_app_bar.dart';
+import 'package:diary_management/core/components/custom_snackbar.dart';
+import 'package:diary_management/core/services/generate_id.dart';
+import 'package:diary_management/core/vlidators.dart';
 import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:diary_management/features/store/view/screens/location_screen.dart';
 import 'package:diary_management/features/store/view/widget/body_elements.dart';
@@ -70,22 +73,35 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
 
 
   void submitStore() {
-    final store = Store(
-      id: widget.existingStore?.id ?? UniqueKey().toString(),
-      name: nameController.text,
-      contactNumber: phoneController.text.trim(),
-      address: address ?? 'Unknown Address',
-      latitude: selectedLocation?.latitude ?? 0.0,
-      longitude: selectedLocation?.longitude ?? 0.0,
-    );
-
-    if (widget.existingStore == null) {
-      context.read<StoresBloc>().add(StoresEvent.addStore(store));
-    } else {
-      context.read<StoresBloc>().add(StoresEvent.updateStore(store.id, store));
-    }
-
-    Navigator.pop(context);
+     final contactValid = FormValidators.isValidPhoneNumber(phoneController.text.trim());
+       
+    if (nameController.text.trim().isNotEmpty && phoneController.text.trim().isNotEmpty&& selectedLocation != null) {
+  if (contactValid) {
+  final store = Store(
+    id: widget.existingStore?.id ?? generateRandomNumber().toString(),
+    name: nameController.text,
+    contactNumber: phoneController.text.trim(),
+    address: address ?? 'Unknown Address',
+    latitude: selectedLocation?.latitude ?? 0.0,
+    longitude: selectedLocation?.longitude ?? 0.0,
+    isVisited: widget.existingStore?.isVisited ?? false,
+    visitTimestamp: widget.existingStore?.visitTimestamp,
+  );
+  
+  if (widget.existingStore == null) {
+    context.read<StoresBloc>().add(StoresEvent.addStore(store));
+  } else {
+    context.read<StoresBloc>().add(StoresEvent.updateStore(store.id, store));
+  }
+  
+  showCustomSnackBar(context, 'store added successfully', false);
+  Navigator.pop(context);
+}else{
+  showCustomSnackBar(context, 'contact number is not valid', true);
+}
+}else{
+  showCustomSnackBar(context, 'fill required fields', true);
+}
   }
 
   @override
@@ -93,7 +109,9 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
     return Scaffold(
       appBar: CustomAppBar(
         title: widget.existingStore == null ? "Add Store" : "Update Store",
-        action: () {},
+        action: () {
+          Navigator.pop(context);
+        },
       ),
       backgroundColor: MyColors.whiteColor,
       body: BodyElements(nameController: nameController, phoneController: phoneController,selectedLocation: selectedLocation,address: address,pickLocation: pickLocation,submitStore: submitStore,),

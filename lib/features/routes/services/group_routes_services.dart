@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:diary_management/features/routes/model/route_group_model.dart';
+import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 
@@ -48,6 +49,27 @@ static Future<List<RouteGroupModel>> fetchAssignedRoutes(String id) async {
     return [];
   }
 }
+static Future<void> updateVisited(String driverId, String id, Store store) async {
+  try {
+    final routesGroupBox = await Hive.openBox<RouteGroupModel>('routesGroup');
+
+    final data = routesGroupBox.values.where((e) => e.asignedDriver?.id == driverId).toList();
+
+
+    for (var route in data) {
+      for (int i = 0; i < route.stores.length; i++) {
+        if (route.stores[i].id == id) {
+      log('Function called ${route.stores[i].id}');
+          route.stores[i] = store;
+        }
+      }
+      await routesGroupBox.put(route.id, route);
+    }
+  } catch (e, s) {
+    log("Error updating visited store: $e\nStack Trace: $s");
+  }
+}
+
 
 
 }

@@ -20,21 +20,21 @@ mixin _$NavigationEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String driverId) fetchRoutes,
     required TResult Function(Store store) getRoute,
-    required TResult Function(Store store) updateVisitStatus,
+    required TResult Function(String driverId, Store store) updateVisitStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String driverId)? fetchRoutes,
     TResult? Function(Store store)? getRoute,
-    TResult? Function(Store store)? updateVisitStatus,
+    TResult? Function(String driverId, Store store)? updateVisitStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String driverId)? fetchRoutes,
     TResult Function(Store store)? getRoute,
-    TResult Function(Store store)? updateVisitStatus,
+    TResult Function(String driverId, Store store)? updateVisitStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -155,7 +155,7 @@ class _$FetchRoutesEventImpl implements FetchRoutesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String driverId) fetchRoutes,
     required TResult Function(Store store) getRoute,
-    required TResult Function(Store store) updateVisitStatus,
+    required TResult Function(String driverId, Store store) updateVisitStatus,
   }) {
     return fetchRoutes(driverId);
   }
@@ -165,7 +165,7 @@ class _$FetchRoutesEventImpl implements FetchRoutesEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String driverId)? fetchRoutes,
     TResult? Function(Store store)? getRoute,
-    TResult? Function(Store store)? updateVisitStatus,
+    TResult? Function(String driverId, Store store)? updateVisitStatus,
   }) {
     return fetchRoutes?.call(driverId);
   }
@@ -175,7 +175,7 @@ class _$FetchRoutesEventImpl implements FetchRoutesEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String driverId)? fetchRoutes,
     TResult Function(Store store)? getRoute,
-    TResult Function(Store store)? updateVisitStatus,
+    TResult Function(String driverId, Store store)? updateVisitStatus,
     required TResult orElse(),
   }) {
     if (fetchRoutes != null) {
@@ -302,7 +302,7 @@ class _$GetRouteEventImpl implements GetRouteEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String driverId) fetchRoutes,
     required TResult Function(Store store) getRoute,
-    required TResult Function(Store store) updateVisitStatus,
+    required TResult Function(String driverId, Store store) updateVisitStatus,
   }) {
     return getRoute(store);
   }
@@ -312,7 +312,7 @@ class _$GetRouteEventImpl implements GetRouteEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String driverId)? fetchRoutes,
     TResult? Function(Store store)? getRoute,
-    TResult? Function(Store store)? updateVisitStatus,
+    TResult? Function(String driverId, Store store)? updateVisitStatus,
   }) {
     return getRoute?.call(store);
   }
@@ -322,7 +322,7 @@ class _$GetRouteEventImpl implements GetRouteEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String driverId)? fetchRoutes,
     TResult Function(Store store)? getRoute,
-    TResult Function(Store store)? updateVisitStatus,
+    TResult Function(String driverId, Store store)? updateVisitStatus,
     required TResult orElse(),
   }) {
     if (getRoute != null) {
@@ -385,7 +385,7 @@ abstract class _$$UpdateVisitStatusEventImplCopyWith<$Res> {
           $Res Function(_$UpdateVisitStatusEventImpl) then) =
       __$$UpdateVisitStatusEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Store store});
+  $Res call({String driverId, Store store});
 }
 
 /// @nodoc
@@ -402,9 +402,14 @@ class __$$UpdateVisitStatusEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? driverId = null,
     Object? store = null,
   }) {
     return _then(_$UpdateVisitStatusEventImpl(
+      null == driverId
+          ? _value.driverId
+          : driverId // ignore: cast_nullable_to_non_nullable
+              as String,
       null == store
           ? _value.store
           : store // ignore: cast_nullable_to_non_nullable
@@ -416,14 +421,16 @@ class __$$UpdateVisitStatusEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateVisitStatusEventImpl implements UpdateVisitStatusEvent {
-  const _$UpdateVisitStatusEventImpl(this.store);
+  const _$UpdateVisitStatusEventImpl(this.driverId, this.store);
 
+  @override
+  final String driverId;
   @override
   final Store store;
 
   @override
   String toString() {
-    return 'NavigationEvent.updateVisitStatus(store: $store)';
+    return 'NavigationEvent.updateVisitStatus(driverId: $driverId, store: $store)';
   }
 
   @override
@@ -431,11 +438,13 @@ class _$UpdateVisitStatusEventImpl implements UpdateVisitStatusEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateVisitStatusEventImpl &&
+            (identical(other.driverId, driverId) ||
+                other.driverId == driverId) &&
             (identical(other.store, store) || other.store == store));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, store);
+  int get hashCode => Object.hash(runtimeType, driverId, store);
 
   /// Create a copy of NavigationEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -451,9 +460,9 @@ class _$UpdateVisitStatusEventImpl implements UpdateVisitStatusEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String driverId) fetchRoutes,
     required TResult Function(Store store) getRoute,
-    required TResult Function(Store store) updateVisitStatus,
+    required TResult Function(String driverId, Store store) updateVisitStatus,
   }) {
-    return updateVisitStatus(store);
+    return updateVisitStatus(driverId, store);
   }
 
   @override
@@ -461,9 +470,9 @@ class _$UpdateVisitStatusEventImpl implements UpdateVisitStatusEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String driverId)? fetchRoutes,
     TResult? Function(Store store)? getRoute,
-    TResult? Function(Store store)? updateVisitStatus,
+    TResult? Function(String driverId, Store store)? updateVisitStatus,
   }) {
-    return updateVisitStatus?.call(store);
+    return updateVisitStatus?.call(driverId, store);
   }
 
   @override
@@ -471,11 +480,11 @@ class _$UpdateVisitStatusEventImpl implements UpdateVisitStatusEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String driverId)? fetchRoutes,
     TResult Function(Store store)? getRoute,
-    TResult Function(Store store)? updateVisitStatus,
+    TResult Function(String driverId, Store store)? updateVisitStatus,
     required TResult orElse(),
   }) {
     if (updateVisitStatus != null) {
-      return updateVisitStatus(store);
+      return updateVisitStatus(driverId, store);
     }
     return orElse();
   }
@@ -516,9 +525,10 @@ class _$UpdateVisitStatusEventImpl implements UpdateVisitStatusEvent {
 }
 
 abstract class UpdateVisitStatusEvent implements NavigationEvent {
-  const factory UpdateVisitStatusEvent(final Store store) =
-      _$UpdateVisitStatusEventImpl;
+  const factory UpdateVisitStatusEvent(
+      final String driverId, final Store store) = _$UpdateVisitStatusEventImpl;
 
+  String get driverId;
   Store get store;
 
   /// Create a copy of NavigationEvent

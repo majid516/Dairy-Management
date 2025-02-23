@@ -21,7 +21,7 @@ class StoresBloc extends Bloc<StoresEvent, StoresState> {
     on<_AddStore>((event, emit) async {
       emit(StoresState.loadingState());
       try {
-        await StoreDatabaseServices.addStore(event.driver);
+        await StoreDatabaseServices.addStore(event.store);
         emit(StoresState.loadedState(StoreDatabaseServices.getStore()));
       } on Exception catch (e) {
         emit(StoresState.errorState());
@@ -32,7 +32,7 @@ class StoresBloc extends Bloc<StoresEvent, StoresState> {
     on<_RemoveStore>((event, emit) async {
       emit(StoresState.loadingState());
       try {
-        await StoreDatabaseServices.removeStore(event.driverId);
+        await StoreDatabaseServices.removeStore(event.storeId);
         emit(StoresState.loadedState(StoreDatabaseServices.getStore()));
       } on Exception catch (e) {
         emit(StoresState.errorState());
@@ -43,7 +43,7 @@ class StoresBloc extends Bloc<StoresEvent, StoresState> {
     on<_UpdateStore>((event, emit) async {
       emit(StoresState.loadingState());
       try {
-        await StoreDatabaseServices.updateStore(event.driverId, event.driver);
+        await StoreDatabaseServices.updateStore(event.storeId, event.store);
         emit(StoresState.loadedState(StoreDatabaseServices.getStore()));
       } on Exception catch (e) {
         emit(StoresState.errorState());

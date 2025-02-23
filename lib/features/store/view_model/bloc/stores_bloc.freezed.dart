@@ -18,25 +18,25 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$StoresEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Store driver) addStore,
-    required TResult Function(String driverId) removeStore,
-    required TResult Function(String driverId, Store driver) updateStore,
+    required TResult Function(Store store) addStore,
+    required TResult Function(String storeId) removeStore,
+    required TResult Function(String storeId, Store store) updateStore,
     required TResult Function() fetchAllStores,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Store driver)? addStore,
-    TResult? Function(String driverId)? removeStore,
-    TResult? Function(String driverId, Store driver)? updateStore,
+    TResult? Function(Store store)? addStore,
+    TResult? Function(String storeId)? removeStore,
+    TResult? Function(String storeId, Store store)? updateStore,
     TResult? Function()? fetchAllStores,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Store driver)? addStore,
-    TResult Function(String driverId)? removeStore,
-    TResult Function(String driverId, Store driver)? updateStore,
+    TResult Function(Store store)? addStore,
+    TResult Function(String storeId)? removeStore,
+    TResult Function(String storeId, Store store)? updateStore,
     TResult Function()? fetchAllStores,
     required TResult orElse(),
   }) =>
@@ -95,7 +95,7 @@ abstract class _$$AddStoreImplCopyWith<$Res> {
           _$AddStoreImpl value, $Res Function(_$AddStoreImpl) then) =
       __$$AddStoreImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Store driver});
+  $Res call({Store store});
 }
 
 /// @nodoc
@@ -111,12 +111,12 @@ class __$$AddStoreImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? driver = null,
+    Object? store = null,
   }) {
     return _then(_$AddStoreImpl(
-      null == driver
-          ? _value.driver
-          : driver // ignore: cast_nullable_to_non_nullable
+      null == store
+          ? _value.store
+          : store // ignore: cast_nullable_to_non_nullable
               as Store,
     ));
   }
@@ -125,14 +125,14 @@ class __$$AddStoreImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddStoreImpl implements _AddStore {
-  const _$AddStoreImpl(this.driver);
+  const _$AddStoreImpl(this.store);
 
   @override
-  final Store driver;
+  final Store store;
 
   @override
   String toString() {
-    return 'StoresEvent.addStore(driver: $driver)';
+    return 'StoresEvent.addStore(store: $store)';
   }
 
   @override
@@ -140,11 +140,11 @@ class _$AddStoreImpl implements _AddStore {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddStoreImpl &&
-            (identical(other.driver, driver) || other.driver == driver));
+            (identical(other.store, store) || other.store == store));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, driver);
+  int get hashCode => Object.hash(runtimeType, store);
 
   /// Create a copy of StoresEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -157,36 +157,36 @@ class _$AddStoreImpl implements _AddStore {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Store driver) addStore,
-    required TResult Function(String driverId) removeStore,
-    required TResult Function(String driverId, Store driver) updateStore,
+    required TResult Function(Store store) addStore,
+    required TResult Function(String storeId) removeStore,
+    required TResult Function(String storeId, Store store) updateStore,
     required TResult Function() fetchAllStores,
   }) {
-    return addStore(driver);
+    return addStore(store);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Store driver)? addStore,
-    TResult? Function(String driverId)? removeStore,
-    TResult? Function(String driverId, Store driver)? updateStore,
+    TResult? Function(Store store)? addStore,
+    TResult? Function(String storeId)? removeStore,
+    TResult? Function(String storeId, Store store)? updateStore,
     TResult? Function()? fetchAllStores,
   }) {
-    return addStore?.call(driver);
+    return addStore?.call(store);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Store driver)? addStore,
-    TResult Function(String driverId)? removeStore,
-    TResult Function(String driverId, Store driver)? updateStore,
+    TResult Function(Store store)? addStore,
+    TResult Function(String storeId)? removeStore,
+    TResult Function(String storeId, Store store)? updateStore,
     TResult Function()? fetchAllStores,
     required TResult orElse(),
   }) {
     if (addStore != null) {
-      return addStore(driver);
+      return addStore(store);
     }
     return orElse();
   }
@@ -230,9 +230,9 @@ class _$AddStoreImpl implements _AddStore {
 }
 
 abstract class _AddStore implements StoresEvent {
-  const factory _AddStore(final Store driver) = _$AddStoreImpl;
+  const factory _AddStore(final Store store) = _$AddStoreImpl;
 
-  Store get driver;
+  Store get store;
 
   /// Create a copy of StoresEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -247,7 +247,7 @@ abstract class _$$RemoveStoreImplCopyWith<$Res> {
           _$RemoveStoreImpl value, $Res Function(_$RemoveStoreImpl) then) =
       __$$RemoveStoreImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String driverId});
+  $Res call({String storeId});
 }
 
 /// @nodoc
@@ -263,12 +263,12 @@ class __$$RemoveStoreImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? driverId = null,
+    Object? storeId = null,
   }) {
     return _then(_$RemoveStoreImpl(
-      null == driverId
-          ? _value.driverId
-          : driverId // ignore: cast_nullable_to_non_nullable
+      null == storeId
+          ? _value.storeId
+          : storeId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -277,14 +277,14 @@ class __$$RemoveStoreImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RemoveStoreImpl implements _RemoveStore {
-  const _$RemoveStoreImpl(this.driverId);
+  const _$RemoveStoreImpl(this.storeId);
 
   @override
-  final String driverId;
+  final String storeId;
 
   @override
   String toString() {
-    return 'StoresEvent.removeStore(driverId: $driverId)';
+    return 'StoresEvent.removeStore(storeId: $storeId)';
   }
 
   @override
@@ -292,12 +292,11 @@ class _$RemoveStoreImpl implements _RemoveStore {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RemoveStoreImpl &&
-            (identical(other.driverId, driverId) ||
-                other.driverId == driverId));
+            (identical(other.storeId, storeId) || other.storeId == storeId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, driverId);
+  int get hashCode => Object.hash(runtimeType, storeId);
 
   /// Create a copy of StoresEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -310,36 +309,36 @@ class _$RemoveStoreImpl implements _RemoveStore {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Store driver) addStore,
-    required TResult Function(String driverId) removeStore,
-    required TResult Function(String driverId, Store driver) updateStore,
+    required TResult Function(Store store) addStore,
+    required TResult Function(String storeId) removeStore,
+    required TResult Function(String storeId, Store store) updateStore,
     required TResult Function() fetchAllStores,
   }) {
-    return removeStore(driverId);
+    return removeStore(storeId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Store driver)? addStore,
-    TResult? Function(String driverId)? removeStore,
-    TResult? Function(String driverId, Store driver)? updateStore,
+    TResult? Function(Store store)? addStore,
+    TResult? Function(String storeId)? removeStore,
+    TResult? Function(String storeId, Store store)? updateStore,
     TResult? Function()? fetchAllStores,
   }) {
-    return removeStore?.call(driverId);
+    return removeStore?.call(storeId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Store driver)? addStore,
-    TResult Function(String driverId)? removeStore,
-    TResult Function(String driverId, Store driver)? updateStore,
+    TResult Function(Store store)? addStore,
+    TResult Function(String storeId)? removeStore,
+    TResult Function(String storeId, Store store)? updateStore,
     TResult Function()? fetchAllStores,
     required TResult orElse(),
   }) {
     if (removeStore != null) {
-      return removeStore(driverId);
+      return removeStore(storeId);
     }
     return orElse();
   }
@@ -383,9 +382,9 @@ class _$RemoveStoreImpl implements _RemoveStore {
 }
 
 abstract class _RemoveStore implements StoresEvent {
-  const factory _RemoveStore(final String driverId) = _$RemoveStoreImpl;
+  const factory _RemoveStore(final String storeId) = _$RemoveStoreImpl;
 
-  String get driverId;
+  String get storeId;
 
   /// Create a copy of StoresEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -400,7 +399,7 @@ abstract class _$$UpdateStoreImplCopyWith<$Res> {
           _$UpdateStoreImpl value, $Res Function(_$UpdateStoreImpl) then) =
       __$$UpdateStoreImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String driverId, Store driver});
+  $Res call({String storeId, Store store});
 }
 
 /// @nodoc
@@ -416,17 +415,17 @@ class __$$UpdateStoreImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? driverId = null,
-    Object? driver = null,
+    Object? storeId = null,
+    Object? store = null,
   }) {
     return _then(_$UpdateStoreImpl(
-      null == driverId
-          ? _value.driverId
-          : driverId // ignore: cast_nullable_to_non_nullable
+      null == storeId
+          ? _value.storeId
+          : storeId // ignore: cast_nullable_to_non_nullable
               as String,
-      null == driver
-          ? _value.driver
-          : driver // ignore: cast_nullable_to_non_nullable
+      null == store
+          ? _value.store
+          : store // ignore: cast_nullable_to_non_nullable
               as Store,
     ));
   }
@@ -435,16 +434,16 @@ class __$$UpdateStoreImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateStoreImpl implements _UpdateStore {
-  const _$UpdateStoreImpl(this.driverId, this.driver);
+  const _$UpdateStoreImpl(this.storeId, this.store);
 
   @override
-  final String driverId;
+  final String storeId;
   @override
-  final Store driver;
+  final Store store;
 
   @override
   String toString() {
-    return 'StoresEvent.updateStore(driverId: $driverId, driver: $driver)';
+    return 'StoresEvent.updateStore(storeId: $storeId, store: $store)';
   }
 
   @override
@@ -452,13 +451,12 @@ class _$UpdateStoreImpl implements _UpdateStore {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateStoreImpl &&
-            (identical(other.driverId, driverId) ||
-                other.driverId == driverId) &&
-            (identical(other.driver, driver) || other.driver == driver));
+            (identical(other.storeId, storeId) || other.storeId == storeId) &&
+            (identical(other.store, store) || other.store == store));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, driverId, driver);
+  int get hashCode => Object.hash(runtimeType, storeId, store);
 
   /// Create a copy of StoresEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -471,36 +469,36 @@ class _$UpdateStoreImpl implements _UpdateStore {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Store driver) addStore,
-    required TResult Function(String driverId) removeStore,
-    required TResult Function(String driverId, Store driver) updateStore,
+    required TResult Function(Store store) addStore,
+    required TResult Function(String storeId) removeStore,
+    required TResult Function(String storeId, Store store) updateStore,
     required TResult Function() fetchAllStores,
   }) {
-    return updateStore(driverId, driver);
+    return updateStore(storeId, store);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Store driver)? addStore,
-    TResult? Function(String driverId)? removeStore,
-    TResult? Function(String driverId, Store driver)? updateStore,
+    TResult? Function(Store store)? addStore,
+    TResult? Function(String storeId)? removeStore,
+    TResult? Function(String storeId, Store store)? updateStore,
     TResult? Function()? fetchAllStores,
   }) {
-    return updateStore?.call(driverId, driver);
+    return updateStore?.call(storeId, store);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Store driver)? addStore,
-    TResult Function(String driverId)? removeStore,
-    TResult Function(String driverId, Store driver)? updateStore,
+    TResult Function(Store store)? addStore,
+    TResult Function(String storeId)? removeStore,
+    TResult Function(String storeId, Store store)? updateStore,
     TResult Function()? fetchAllStores,
     required TResult orElse(),
   }) {
     if (updateStore != null) {
-      return updateStore(driverId, driver);
+      return updateStore(storeId, store);
     }
     return orElse();
   }
@@ -544,11 +542,11 @@ class _$UpdateStoreImpl implements _UpdateStore {
 }
 
 abstract class _UpdateStore implements StoresEvent {
-  const factory _UpdateStore(final String driverId, final Store driver) =
+  const factory _UpdateStore(final String storeId, final Store store) =
       _$UpdateStoreImpl;
 
-  String get driverId;
-  Store get driver;
+  String get storeId;
+  Store get store;
 
   /// Create a copy of StoresEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -598,9 +596,9 @@ class _$FetchAllStoresImpl implements _FetchAllStores {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Store driver) addStore,
-    required TResult Function(String driverId) removeStore,
-    required TResult Function(String driverId, Store driver) updateStore,
+    required TResult Function(Store store) addStore,
+    required TResult Function(String storeId) removeStore,
+    required TResult Function(String storeId, Store store) updateStore,
     required TResult Function() fetchAllStores,
   }) {
     return fetchAllStores();
@@ -609,9 +607,9 @@ class _$FetchAllStoresImpl implements _FetchAllStores {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Store driver)? addStore,
-    TResult? Function(String driverId)? removeStore,
-    TResult? Function(String driverId, Store driver)? updateStore,
+    TResult? Function(Store store)? addStore,
+    TResult? Function(String storeId)? removeStore,
+    TResult? Function(String storeId, Store store)? updateStore,
     TResult? Function()? fetchAllStores,
   }) {
     return fetchAllStores?.call();
@@ -620,9 +618,9 @@ class _$FetchAllStoresImpl implements _FetchAllStores {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Store driver)? addStore,
-    TResult Function(String driverId)? removeStore,
-    TResult Function(String driverId, Store driver)? updateStore,
+    TResult Function(Store store)? addStore,
+    TResult Function(String storeId)? removeStore,
+    TResult Function(String storeId, Store store)? updateStore,
     TResult Function()? fetchAllStores,
     required TResult orElse(),
   }) {

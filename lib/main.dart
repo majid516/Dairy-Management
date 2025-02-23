@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    determinePosition();
     ScreenSize.initializeScreenSize(context);
     return MultiBlocProvider(
       providers: [
@@ -63,4 +64,39 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+
+
+
+Future<Position?> determinePosition() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+
+  // Step 1: Check if location services are enabled
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    print("Location services are disabled.");
+    return null;
+  }
+
+  // Step 2: Check and request permission
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      print("Location permissions are denied");
+      return null;
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    print("Location permissions are permanently denied. Open settings.");
+    await Geolocator.openAppSettings();
+    return null;
+  }
+
+  // Step 3: Get current position
+  return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high);
 }

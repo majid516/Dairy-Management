@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:diary_management/core/components/custom_app_bar.dart';
 import 'package:diary_management/features/store/view/widget/add_store_custom_button.dart';
 import 'package:diary_management/features/store/view/widget/store_details_card_widget.dart';
@@ -29,6 +31,7 @@ class StoreScreen extends StatelessWidget {
                     itemCount: stores.length,
                     itemBuilder: (context, index) {
                       final store = stores[index];
+                      log(store.visitTimestamp?.minute.toString()??'');
                       return StoreDetailsCardWidget(store: store);
                     },
                   );

@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:diary_management/core/colors.dart';
 import 'package:diary_management/core/components/custom_app_bar.dart';
+import 'package:diary_management/core/components/custom_snackbar.dart';
 import 'package:diary_management/core/components/custom_text_from_field.dart';
+import 'package:diary_management/core/screen_size.dart';
 import 'package:diary_management/core/services/generate_id.dart';
 import 'package:diary_management/core/spaces/space.dart';
 import 'package:diary_management/features/routes/model/route_group_model.dart';
@@ -65,32 +67,34 @@ class RouteManagementScreen extends StatelessWidget {
                 return state.maybeWhen(
                   orElse: () => Center(child: Text('Loading...')),
                   loadedState: (stores) {
-                    List<Map<String, String>> locations = stores
-                        .map((e) => {'name': e.name, 'address': e.address})
-                        .toList();
                     return Expanded(
-                      child: BlocBuilder<RouteSelectionCubit, List<Map<String, String>>>(
+                      child: BlocBuilder<RouteSelectionCubit, List<Store>>(
                         builder: (context, selectedRoutes) {
                           return ListView.separated(
-                            separatorBuilder: (context, index) => Divider(
-                              height: 0,
-                              color: MyColors.primaryColor,
-                            ),
-                            itemCount: locations.length,
+                            separatorBuilder:
+                                (context, index) => Divider(
+                                  height: 0,
+                                  color: MyColors.primaryColor,
+                                ),
+                            itemCount: stores.length,
                             itemBuilder: (context, index) {
-                              final location = locations[index];
-                              final isSelected = selectedRoutes.any((route) => route['address'] == location['address']);
+                              final store = stores[index];
+                              final isSelected = selectedRoutes.any(
+                                (route) => route.address == store.address,
+                              );
                               return CheckboxListTile(
                                 title: Text(
-                                  location['name']!,
+                                  store.name,
                                   style: const TextStyle(fontSize: 16),
                                 ),
-                                subtitle: Text(location['address']!),
+                                subtitle: Text(store.address),
                                 checkboxShape: CircleBorder(),
                                 activeColor: MyColors.secondaryColor,
                                 value: isSelected,
                                 onChanged: (bool? value) {
-                                  context.read<RouteSelectionCubit>().toggleRoute(location);
+                                  context
+                                      .read<RouteSelectionCubit>()
+                                      .toggleRoute(store);
                                 },
                               );
                             },
@@ -103,55 +107,74 @@ class RouteManagementScreen extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () async {
-                final  selectedRoutes = context.read<RouteSelectionCubit>().state;
-                if (selectedRoutes.isNotEmpty && groupNameController.text.trim().isNotEmpty) {
-                  final name = groupNameController.text.trim();
-                  List<String> latlngList = [];
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () async {
+                    final List<Store> selectedRoutes =
+                        context.read<RouteSelectionCubit>().state;
+                    if (selectedRoutes.isNotEmpty &&
+                        groupNameController.text.trim().isNotEmpty) {
+                      final name = groupNameController.text.trim();
 
-                  for (var route in selectedRoutes) {
-                    try {
-                      List<Location> locations = await locationFromAddress(route['address']!);
-                      if (locations.isNotEmpty) {
-                        Location location = locations.first;
-                        latlngList.add("${location.latitude}-${location.longitude}");
-                      }
-                    } catch (e) {
-                      log("Error fetching coordinates for ${route['address']}: $e");
+                      final group = RouteGroupModel(
+                        id: generateRandomNumber().toString(),
+                        asignedDriver: null,
+                        groupName: name,
+                        stores:
+                            selectedRoutes
+                                .map(
+                                  (route) => Store(
+                                    id: route.id,
+                                    name: route.name,
+                                    address: route.address,
+                                    contactNumber: route.contactNumber,
+                                    latitude: route.latitude,
+                                    longitude: route.longitude,
+                                    isVisited: route.isVisited,
+                                    visitTimestamp: route.visitTimestamp,
+                                  ),
+                                )
+                                .toList(),
+                      );
+
+                      showCustomSnackBar(
+                        context,
+                        '${groupNameController.text.trim()} group created',
+                        false,
+                      );
+                      context.read<RouteGroupBloc>().add(
+                        RouteGroupEvent.addNewGroup(group),
+                      );
+                      context.read<RouteSelectionCubit>().clearSelection();
+                      groupNameController.clear();
+                    } else if (selectedRoutes.isEmpty) {
+                      showCustomSnackBar(context, 'select shops', true);
+                    } else if (groupNameController.text.trim().isEmpty) {
+                      showCustomSnackBar(context, 'add group name', true);
                     }
-                  }
-
-                 final group = RouteGroupModel(
-  id: generateRandomNumber().toString(),
-  asignedDriver: null,
-  groupName: name,
-  stores: selectedRoutes.map((route) => Store(
-    id: generateRandomNumber().toString(), // Generate a unique ID for the store
-    name: route['name']!,
-    address: route['address']!,
-    contactNumber: "", // Set a default or fetch it
-    latitude: 0.0, // You might need to fetch actual coordinates
-    longitude: 0.0, // You might need to fetch actual coordinates
-  )).toList(),
-);
-
-
-                  context.read<RouteGroupBloc>().add(RouteGroupEvent.addNewGroup(group));
-                  context.read<RouteSelectionCubit>().clearSelection();
-                  groupNameController.clear();
-                }
-              },
-              child: const Text(
-                'Create Group',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
+                  },
+                  child: Container(
+                    width: ScreenSize.width * 0.7,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      gradient: MyColors.appGradient,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Create Group',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: MyColors.whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

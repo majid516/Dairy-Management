@@ -2,7 +2,9 @@ import 'package:diary_management/core/colors.dart';
 import 'package:diary_management/core/components/custom_delete_update_icon.dart';
 import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:diary_management/features/store/view/widget/add_store_screen.dart';
+import 'package:diary_management/features/store/view_model/bloc/stores_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ListTrailingWidget extends StatelessWidget {
   const ListTrailingWidget({super.key, required this.store});
@@ -30,7 +32,9 @@ class ListTrailingWidget extends StatelessWidget {
         CustomDeleteUpdateIcon(
           icon: Icons.delete,
           color: MyColors.secondaryColor,
-          onTap: () {},
+          onTap: () {
+            context.read<StoresBloc>().add(StoresEvent.removeStore(store.id));
+          },
         ),
       ],
     );

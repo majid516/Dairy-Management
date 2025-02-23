@@ -1,13 +1,14 @@
 
+import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RouteSelectionCubit extends Cubit<List<Map<String, String>>> {
+class RouteSelectionCubit extends Cubit<List<Store>> {
   RouteSelectionCubit() : super([]);
 
-  void toggleRoute(Map<String, String> route) {
-    final updatedRoutes = List<Map<String, String>>.from(state);
-    if (updatedRoutes.any((r) => r['address'] == route['address'])) {
-      updatedRoutes.removeWhere((r) => r['address'] == route['address']);
+  void toggleRoute(Store route) {
+    final updatedRoutes = List<Store>.from(state);
+    if (updatedRoutes.any((r) => r.address == route.address)) {
+      updatedRoutes.removeWhere((r) => r.address == route.address);
     } else {
       updatedRoutes.add(route);
     }

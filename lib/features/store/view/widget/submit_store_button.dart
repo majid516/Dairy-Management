@@ -11,9 +11,7 @@ class SubmitStoreButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 30,
-      child: Container(
+    return  Container(
         width: ScreenSize.width*0.9,
         height: 60,
         decoration: BoxDecoration(
@@ -33,7 +31,7 @@ class SubmitStoreButton extends StatelessWidget {
             CustomSubmitButton(action: action),
           ],
         ),
-      ),
+      
     );
   }
 }

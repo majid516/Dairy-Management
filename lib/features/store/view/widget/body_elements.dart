@@ -21,49 +21,43 @@ class BodyElements extends StatelessWidget {
   final TextEditingController nameController;
   final TextEditingController phoneController;
 final LatLng initialLocation = LatLng(11.2111, 75.9404);
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
+ @override
+Widget build(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(18.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(18.0),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              spacing: 12,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Store Name:", style: TextStyle(fontWeight: FontWeight.bold)),
+                CustomTextFromField(controller: nameController, label: "Store Name"),
+                Text("Phone:", style: TextStyle(fontWeight: FontWeight.bold)),
+                CustomTextFromField(controller: phoneController, label: 'Phone', keyboardType: TextInputType.phone),
+                Text("Selected Address:", style: TextStyle(fontWeight: FontWeight.bold)),
+                AddressTileWidget(address: address, action: pickLocation),
+                ShowLocationCardWidget(selectedLocation: selectedLocation, initialLocation: initialLocation, action: pickLocation),
+              ],
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
           child: Column(
-            spacing: 10,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Store Name:",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              CustomTextFromField(
-                controller: nameController,
-                label: "Store Name",
-              ),
-              Text(
-                "Phone:",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              CustomTextFromField(
-                controller: phoneController,
-                label: 'Phone',
-                keyboardType: TextInputType.phone,
-              ),
-              Text(
-                "Selected Address:",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              AddressTileWidget(address: address,action: pickLocation,),
-                
-              ShowLocationCardWidget(selectedLocation: selectedLocation, initialLocation: initialLocation,action: pickLocation,),
-                
-              Space.hSpace20,
+              SubmitStoreButton(action: submitStore),
+              Space.hSpace10
             ],
           ),
         ),
-    
-        SubmitStoreButton(action: submitStore,),
+        
       ],
-    );
-  }
+    ),
+  );
+}
+
 }

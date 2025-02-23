@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'store_model.g.dart';
@@ -18,10 +20,9 @@ class Store {
   @HiveField(5)
   final double longitude;
   @HiveField(6)
-  bool isVisited;
+  final bool isVisited;
   @HiveField(7)
   DateTime? visitTimestamp;
-
   Store({
     required this.id,
     required this.name,
@@ -29,41 +30,92 @@ class Store {
     required this.contactNumber,
     required this.latitude,
     required this.longitude,
-    this.isVisited = false,
+    required this.isVisited,
     this.visitTimestamp,
   });
 
-  Map<String, dynamic> toJson() {
-    return {
-      "id": id,
-      "name": name,
-      "address": address,
-      "contactNumber": contactNumber,
-      "latitude": latitude,
-      "longitude": longitude,
-      "isVisited": isVisited,
-      "visitTimestamp": visitTimestamp?.toIso8601String(),
-    };
-  }
 
-  factory Store.fromJson(Map<String, dynamic> json) {
+  Store copyWith({
+    String? id,
+    String? name,
+    String? address,
+    String? contactNumber,
+    double? latitude,
+    double? longitude,
+    bool? isVisited,
+    DateTime? visitTimestamp,
+  }) {
     return Store(
-      id: json["id"],
-      name: json["name"],
-      address: json["address"],
-      contactNumber: json["contactNumber"],
-      latitude: json["latitude"],
-      longitude: json["longitude"],
-      isVisited: json["isVisited"] ?? false,
-      visitTimestamp:
-          json["visitTimestamp"] != null
-              ? DateTime.parse(json["visitTimestamp"])
-              : null,
+      id: id ?? this.id,
+      name: name ?? this.name,
+      address: address ?? this.address,
+      contactNumber: contactNumber ?? this.contactNumber,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      isVisited: isVisited ?? this.isVisited,
+      visitTimestamp: visitTimestamp ?? this.visitTimestamp,
     );
   }
 
-  static List<Store> fromJsonList(String jsonString) {
-    Iterable list = json.decode(jsonString);
-    return list.map((model) => Store.fromJson(model)).toList();
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'address': address,
+      'contactNumber': contactNumber,
+      'latitude': latitude,
+      'longitude': longitude,
+      'isVisited': isVisited,
+      'visitTimestamp': visitTimestamp?.millisecondsSinceEpoch,
+    };
+  }
+
+  factory Store.fromMap(Map<String, dynamic> map) {
+    return Store(
+      id: map['id'] as String,
+      name: map['name'] as String,
+      address: map['address'] as String,
+      contactNumber: map['contactNumber'] as String,
+      latitude: map['latitude'] as double,
+      longitude: map['longitude'] as double,
+      isVisited: map['isVisited'] as bool,
+      visitTimestamp: map['visitTimestamp'] != null ? DateTime.fromMillisecondsSinceEpoch(map['visitTimestamp'] as int) : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Store.fromJson(String source) => Store.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'Store(id: $id, name: $name, address: $address, contactNumber: $contactNumber, latitude: $latitude, longitude: $longitude, isVisited: $isVisited, visitTimestamp: $visitTimestamp)';
+  }
+
+  @override
+  bool operator ==(covariant Store other) {
+    if (identical(this, other)) return true;
+  
+    return 
+      other.id == id &&
+      other.name == name &&
+      other.address == address &&
+      other.contactNumber == contactNumber &&
+      other.latitude == latitude &&
+      other.longitude == longitude &&
+      other.isVisited == isVisited &&
+      other.visitTimestamp == visitTimestamp;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+      name.hashCode ^
+      address.hashCode ^
+      contactNumber.hashCode ^
+      latitude.hashCode ^
+      longitude.hashCode ^
+      isVisited.hashCode ^
+      visitTimestamp.hashCode;
   }
 }

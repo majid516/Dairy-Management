@@ -1,4 +1,3 @@
-
 // import 'dart:convert';
 // import 'dart:developer';
 // import 'package:diary_management/core/colors.dart';
@@ -262,20 +261,19 @@
 //   }
 // }
 
-
-
 import 'dart:convert';
+import 'dart:developer';
 import 'package:diary_management/core/colors.dart';
 import 'package:diary_management/core/components/custom_app_bar.dart';
 import 'package:diary_management/features/driver_tracking/view_model/bloc/navigation_bloc.dart';
 import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
+import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 
 class DriverNavigationScreen extends StatelessWidget {
   final Driver driver;
@@ -284,7 +282,9 @@ class DriverNavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NavigationBloc()..add(NavigationEvent.fetchRoutes(driver.id)),
+      create:
+          (context) =>
+              NavigationBloc()..add(NavigationEvent.fetchRoutes(driver.id)),
       child: Scaffold(
         appBar: CustomAppBar(
           title: 'Driver Navigation',
@@ -295,50 +295,84 @@ class DriverNavigationScreen extends StatelessWidget {
           builder: (context, state) {
             return state.when(
               loading: () => const Center(child: CircularProgressIndicator()),
-              loaded: (currentLocation, polylines, markers, stores) => Column(
-                children: [
-                  SizedBox(
-                    height: 300,
-                    child: FlutterMap(
-  options: MapOptions(
-    initialCenter: currentLocation,
-    initialZoom: 12.0,
-  ),
-  children: [
-    TileLayer(
-      urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-    ),
-    if (polylines.isNotEmpty) PolylineLayer(polylines: polylines),
-    if (markers.isNotEmpty)
-      MarkerLayer(
-        markers:markers.toList(),
-      ),
-  ],
-)
-
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: stores.length,
-                      itemBuilder: (context, index) {
-                        final store = stores[index];
-                        return ListTile(
-                          title: Text(store.name),
-                          subtitle: Text("Location: ${store.address}"),
-                          onTap: () => context.read<NavigationBloc>().add(NavigationEvent.getRoute(store)),
-                          trailing: IconButton(
-                            icon: Icon(
-                              Icons.check_circle,
-                              color: store.isVisited ? Colors.green : Colors.grey,
-                            ),
-                            onPressed: () => context.read<NavigationBloc>().add(NavigationEvent.updateVisitStatus(store)),
+              loaded:
+                  (currentLocation, polylines, markers, stores) => Column(
+                    children: [
+                      SizedBox(
+                        height: 300,
+                        child: FlutterMap(
+                          options: MapOptions(
+                            initialCenter: currentLocation,
+                            initialZoom: 12.0,
                           ),
-                        );
-                      },
-                    ),
+                          children: [
+                            TileLayer(
+                              urlTemplate:
+                                  "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                            ),
+                            if (polylines.isNotEmpty)
+                              PolylineLayer(polylines: polylines),
+                            if (markers.isNotEmpty)
+                              MarkerLayer(markers: markers.toList()),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) => Divider(color: MyColors.primaryColor,height: 0,),
+                          itemCount: stores.length,
+                          itemBuilder: (context, index) {
+                            final store = stores[index];
+                            
+                            return ListTile(
+                              title: Text(store.name),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Contact: ${store.contactNumber}"),
+                                  Text("Location: ${store.address}"),
+                                ],
+                              ),
+                              onTap: () {
+                                context.read<NavigationBloc>().add(
+                                  NavigationEvent.getRoute(store),
+                                );
+                              },
+                              trailing: IconButton(
+                                icon: Icon(
+                                  Icons.check_circle,
+                                  color:
+                                      store.visitTimestamp != null
+                                          ? MyColors.secondaryColor
+                                          : Colors.grey,
+                                ),
+                                onPressed: () {
+                                  final updatedStore = Store(
+                                    id: store.id,
+                                    name: store.name,
+                                    address: store.address,
+                                    contactNumber: store.contactNumber,
+                                    latitude: store.latitude,
+                                    longitude: store.longitude,
+                                    isVisited: true,
+                                    visitTimestamp: DateTime.now(),
+                                  );
+                                                           
+                                  context.read<NavigationBloc>().add(
+                                    NavigationEvent.updateVisitStatus(
+                                      driver.id,
+                                      updatedStore,
+                                      
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
               error: () => const Center(child: Text("No routes available")),
             );
           },

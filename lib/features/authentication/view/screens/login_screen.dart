@@ -156,7 +156,7 @@ class LoginButtonWidget extends StatelessWidget {
     return;
   }
 
-  if (dName == 'admin' && dPass == 'admin123') {
+  if (dName == 'a' && dPass == 'a') {
     showCustomSnackBar(context, 'Admin login successfully', false);
     Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => DashboardScreen()));
     return;

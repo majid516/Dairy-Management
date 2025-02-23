@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -20,17 +22,19 @@ class StoreDatabaseServices {
     }
   }
 
-  static Future<void> addStore(Store driver) async {
+  static Future<void> addStore(Store store) async {
     try {
-      await _storeBox.put(driver.id, driver);
+      await _storeBox.put(store.id, store);
     } catch (e) {
       throw Exception(e);
     }
   }
 
-  static Future<void> updateStore(String id, Store driver) async {
+  static Future<void> updateStore(String id, Store store) async {
+   
     try {
-      await _storeBox.put(id, driver);
+      await _storeBox.put(id, store);
+      log(store.id);
     } catch (e) {
       throw Exception(e);
     }
