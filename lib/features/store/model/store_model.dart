@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:hive_flutter/hive_flutter.dart';
@@ -23,6 +22,8 @@ class Store {
   final bool isVisited;
   @HiveField(7)
   DateTime? visitTimestamp;
+  @HiveField(8)
+  final bool isAssigned;
   Store({
     required this.id,
     required this.name,
@@ -32,8 +33,8 @@ class Store {
     required this.longitude,
     required this.isVisited,
     this.visitTimestamp,
+    required this.isAssigned,
   });
-
 
   Store copyWith({
     String? id,
@@ -44,6 +45,7 @@ class Store {
     double? longitude,
     bool? isVisited,
     DateTime? visitTimestamp,
+    bool? isAssigned,
   }) {
     return Store(
       id: id ?? this.id,
@@ -54,6 +56,7 @@ class Store {
       longitude: longitude ?? this.longitude,
       isVisited: isVisited ?? this.isVisited,
       visitTimestamp: visitTimestamp ?? this.visitTimestamp,
+      isAssigned: isAssigned ?? this.isAssigned,
     );
   }
 
@@ -67,6 +70,7 @@ class Store {
       'longitude': longitude,
       'isVisited': isVisited,
       'visitTimestamp': visitTimestamp?.millisecondsSinceEpoch,
+      'isAssigned': isAssigned,
     };
   }
 
@@ -80,6 +84,7 @@ class Store {
       longitude: map['longitude'] as double,
       isVisited: map['isVisited'] as bool,
       visitTimestamp: map['visitTimestamp'] != null ? DateTime.fromMillisecondsSinceEpoch(map['visitTimestamp'] as int) : null,
+      isAssigned: map['isAssigned'] as bool,
     );
   }
 
@@ -89,7 +94,7 @@ class Store {
 
   @override
   String toString() {
-    return 'Store(id: $id, name: $name, address: $address, contactNumber: $contactNumber, latitude: $latitude, longitude: $longitude, isVisited: $isVisited, visitTimestamp: $visitTimestamp)';
+    return 'Store(id: $id, name: $name, address: $address, contactNumber: $contactNumber, latitude: $latitude, longitude: $longitude, isVisited: $isVisited, visitTimestamp: $visitTimestamp, isAssigned: $isAssigned)';
   }
 
   @override
@@ -104,7 +109,8 @@ class Store {
       other.latitude == latitude &&
       other.longitude == longitude &&
       other.isVisited == isVisited &&
-      other.visitTimestamp == visitTimestamp;
+      other.visitTimestamp == visitTimestamp &&
+      other.isAssigned == isAssigned;
   }
 
   @override
@@ -116,6 +122,7 @@ class Store {
       latitude.hashCode ^
       longitude.hashCode ^
       isVisited.hashCode ^
-      visitTimestamp.hashCode;
+      visitTimestamp.hashCode ^
+      isAssigned.hashCode;
   }
 }

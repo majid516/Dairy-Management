@@ -10,7 +10,8 @@ class AddAlertDilogElements extends StatelessWidget {
     required this.nameController,
     required this.passwordController,
     required this.pickedImagePath,
-    required this.existingDriver, required this.contactController,
+    required this.existingDriver,
+    required this.contactController,
   });
 
   final TextEditingController nameController;
@@ -26,13 +27,16 @@ class AddAlertDilogElements extends StatelessWidget {
         Space.hSpace10,
         CustomTextFromField(controller: nameController, label: "Name"),
         Space.hSpace10,
-        CustomTextFromField(controller: contactController, label: "Contact", keyboardType: TextInputType.phone,),
+        CustomTextFromField(
+          controller: contactController,
+          label: "Contact",
+          keyboardType: TextInputType.phone,
+        ),
         Space.hSpace10,
         CustomTextFromField(
           controller: passwordController,
           label: "Driver Pass Id",
           obscureText: true,
-          
         ),
         Space.hSpace10,
         Row(
@@ -47,7 +51,7 @@ class AddAlertDilogElements extends StatelessWidget {
               passwordController: passwordController,
               pickedImagePath: pickedImagePath,
               existingDriver: existingDriver,
-              contactController:contactController ,
+              contactController: contactController,
             ),
           ],
         ),

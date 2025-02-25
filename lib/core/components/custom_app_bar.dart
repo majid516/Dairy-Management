@@ -57,7 +57,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         Positioned(
-          bottom: 15,
+          bottom: 10,
           child: SizedBox(
             width: ScreenSize.width,
             child: Padding(
@@ -80,7 +80,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       Text(
                         title,
                         style: GoogleFonts.cabin(
-                          fontSize: 26,
+                          fontSize: 24,
                           textStyle: TextStyle(
                             color: MyColors.whiteColor,
                             letterSpacing: .5,

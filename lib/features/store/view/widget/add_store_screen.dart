@@ -26,7 +26,7 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
   final TextEditingController phoneController = TextEditingController();
   LatLng? selectedLocation;
   String? address;
-  
+
   @override
   void initState() {
     super.initState();
@@ -58,50 +58,57 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
   }
 
   Future<void> getAddressFromLatLng(double lat, double lng) async {
-  try {
-    List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
-    if (placemarks.isNotEmpty) {
-      Placemark place = placemarks.first;
-      setState(() {
-        address = "${place.postalCode}, ${place.street}, ${place.locality}, ${place.country}";
-      });
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+      if (placemarks.isNotEmpty) {
+        Placemark place = placemarks.first;
+        setState(() {
+          address =
+              "${place.postalCode}, ${place.street}, ${place.locality}, ${place.country}";
+        });
+      }
+    } catch (e) {
+      log("Error fetching address: $e");
     }
-  } catch (e) {
-    log("Error fetching address: $e");
   }
-}
-
 
   void submitStore() {
-     final contactValid = FormValidators.isValidPhoneNumber(phoneController.text.trim());
-       
-    if (nameController.text.trim().isNotEmpty && phoneController.text.trim().isNotEmpty&& selectedLocation != null) {
-  if (contactValid) {
-  final store = Store(
-    id: widget.existingStore?.id ?? generateRandomNumber().toString(),
-    name: nameController.text,
-    contactNumber: phoneController.text.trim(),
-    address: address ?? 'Unknown Address',
-    latitude: selectedLocation?.latitude ?? 0.0,
-    longitude: selectedLocation?.longitude ?? 0.0,
-    isVisited: widget.existingStore?.isVisited ?? false,
-    visitTimestamp: widget.existingStore?.visitTimestamp,
-  );
-  
-  if (widget.existingStore == null) {
-    context.read<StoresBloc>().add(StoresEvent.addStore(store));
-  } else {
-    context.read<StoresBloc>().add(StoresEvent.updateStore(store.id, store));
-  }
-  
-  showCustomSnackBar(context, 'store added successfully', false);
-  Navigator.pop(context);
-}else{
-  showCustomSnackBar(context, 'contact number is not valid', true);
-}
-}else{
-  showCustomSnackBar(context, 'fill required fields', true);
-}
+    final contactValid = FormValidators.isValidPhoneNumber(
+      phoneController.text.trim(),
+    );
+
+    if (nameController.text.trim().isNotEmpty &&
+        phoneController.text.trim().isNotEmpty &&
+        selectedLocation != null) {
+      if (contactValid) {
+        final store = Store(
+          id: widget.existingStore?.id ?? generateRandomNumber().toString(),
+          name: nameController.text,
+          contactNumber: phoneController.text.trim(),
+          address: address ?? 'Unknown Address',
+          latitude: selectedLocation?.latitude ?? 0.0,
+          longitude: selectedLocation?.longitude ?? 0.0,
+          isVisited: widget.existingStore?.isVisited ?? false,
+          visitTimestamp: widget.existingStore?.visitTimestamp,
+          isAssigned: widget.existingStore?.isAssigned ?? false,
+        );
+
+        if (widget.existingStore == null) {
+          context.read<StoresBloc>().add(StoresEvent.addStore(store));
+        } else {
+          context.read<StoresBloc>().add(
+            StoresEvent.updateStore(store.id, store),
+          );
+        }
+
+        showCustomSnackBar(context, 'store added successfully', false);
+        Navigator.pop(context);
+      } else {
+        showCustomSnackBar(context, 'contact number is not valid', true);
+      }
+    } else {
+      showCustomSnackBar(context, 'fill required fields', true);
+    }
   }
 
   @override
@@ -114,7 +121,14 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
         },
       ),
       backgroundColor: MyColors.whiteColor,
-      body: BodyElements(nameController: nameController, phoneController: phoneController,selectedLocation: selectedLocation,address: address,pickLocation: pickLocation,submitStore: submitStore,),
+      body: BodyElements(
+        nameController: nameController,
+        phoneController: phoneController,
+        selectedLocation: selectedLocation,
+        address: address,
+        pickLocation: pickLocation,
+        submitStore: submitStore,
+      ),
     );
   }
 }

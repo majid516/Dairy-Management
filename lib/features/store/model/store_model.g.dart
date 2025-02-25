@@ -25,13 +25,14 @@ class StoreAdapter extends TypeAdapter<Store> {
       longitude: fields[5] as double,
       isVisited: fields[6] as bool,
       visitTimestamp: fields[7] as DateTime?,
+      isAssigned: fields[8] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Store obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class StoreAdapter extends TypeAdapter<Store> {
       ..writeByte(6)
       ..write(obj.isVisited)
       ..writeByte(7)
-      ..write(obj.visitTimestamp);
+      ..write(obj.visitTimestamp)
+      ..writeByte(8)
+      ..write(obj.isAssigned);
   }
 
   @override
