@@ -1,5 +1,3 @@
-import 'dart:nativewrappers/_internal/vm/lib/developer.dart';
-
 import 'package:diary_management/core/colors.dart';
 import 'package:diary_management/core/spaces/space.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +16,6 @@ class VisitedProgressElements extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -28,7 +25,7 @@ class VisitedProgressElements extends StatelessWidget {
             'Store Visits',
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-            Space.hSpace10,
+          Space.hSpace10,
           Row(
             children: [
               Expanded(
@@ -37,12 +34,14 @@ class VisitedProgressElements extends StatelessWidget {
                   child: LinearProgressIndicator(
                     value: visitedStores / totalStores,
                     backgroundColor: Colors.grey[200],
-                    valueColor: AlwaysStoppedAnimation<Color>(MyColors.primaryColor),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      MyColors.primaryColor,
+                    ),
                     minHeight: 12,
                   ),
                 ),
               ),
-             Space.wSpace10,
+              Space.wSpace10,
               Text(
                 '${percentage.toStringAsFixed(0)}%',
                 style: const TextStyle(
@@ -52,7 +51,7 @@ class VisitedProgressElements extends StatelessWidget {
               ),
             ],
           ),
-          
+
           Text(
             '$visitedStores of $totalStores stores visited',
             style: TextStyle(fontSize: 14, color: Colors.grey[700]),

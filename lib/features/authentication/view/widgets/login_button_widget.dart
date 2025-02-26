@@ -4,7 +4,7 @@ import 'package:diary_management/core/components/custom_snackbar.dart';
 import 'package:diary_management/core/screen_size.dart';
 import 'package:diary_management/features/authentication/services/services.dart';
 import 'package:diary_management/features/dashboard/screen/dashboard.dart';
-import 'package:diary_management/features/driver_tracking/view/screens/driver_tracking_screen.dart';
+import 'package:diary_management/features/driver_navigation/view/screens/driver_navigation_screen.dart';
 import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
 import 'package:diary_management/features/drivers/services/database/driver_database_services.dart';
 import 'package:flutter/material.dart';

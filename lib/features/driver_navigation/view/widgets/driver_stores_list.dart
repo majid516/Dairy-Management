@@ -1,5 +1,5 @@
 import 'package:diary_management/core/colors.dart';
-import 'package:diary_management/features/driver_tracking/view_model/bloc/navigation_bloc.dart';
+import 'package:diary_management/features/driver_navigation/view_model/bloc/navigation_bloc.dart';
 import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
 import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ class DriverStoresList extends StatelessWidget {
             },
             trailing: IconButton(
               icon: Icon(
-                Icons.check_circle,
+                Icons.check_box,
                 color:
                     store.visitTimestamp != null
                         ? MyColors.secondaryColor
