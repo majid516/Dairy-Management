@@ -5,6 +5,8 @@ import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<List<Store>> fetchStores(String driverId) async {
+  log('fetching worked');
+
   try {
     final routesGroupBox = await Hive.openBox<RouteGroupModel>('routesGroup');
     final assignedGroups =

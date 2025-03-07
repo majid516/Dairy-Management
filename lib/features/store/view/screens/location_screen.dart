@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/core/components/custom_app_bar.dart';
 import 'package:diary_management/core/components/custom_snackbar.dart';
 import 'package:flutter/material.dart';

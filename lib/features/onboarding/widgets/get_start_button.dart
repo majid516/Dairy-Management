@@ -1,5 +1,5 @@
-import 'package:diary_management/core/colors.dart';
-import 'package:diary_management/core/screen_size.dart';
+import 'package:diary_management/core/constants/colors.dart';
+import 'package:diary_management/core/constants/screen_size.dart';
 import 'package:diary_management/features/authentication/view/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,7 @@ class GetStartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (ctx) => LoginScreen()),
         );

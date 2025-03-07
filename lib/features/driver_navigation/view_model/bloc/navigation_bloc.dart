@@ -18,13 +18,13 @@ part 'navigation_bloc.freezed.dart';
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   NavigationBloc() : super(const NavigationState.loading()) {
     on<FetchRoutesEvent>((event, emit) async {
+ log(event.driverId.toString());
       LatLng currentLocation = await getCurrentLocation();
-
       if (currentLocation.latitude == 0.0 && currentLocation.longitude == 0.0) {
         log("Failed to fetch current location.");
         return;
       }
-
+      log('working fine');
       final List<Store> stores = await fetchStores(event.driverId);
 
       final Marker currentLocationMarker = Marker(

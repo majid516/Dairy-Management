@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/features/routes/model/route_group_model.dart';
 import 'package:diary_management/features/routes/view/widgets/drivers_alert_box.dart';
 import 'package:diary_management/features/routes/view/widgets/titile_widget.dart';

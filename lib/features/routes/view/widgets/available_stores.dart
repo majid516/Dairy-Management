@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:diary_management/core/colors.dart';
-import 'package:diary_management/core/screen_size.dart';
+import 'package:diary_management/core/constants/colors.dart';
+import 'package:diary_management/core/constants/screen_size.dart';
 import 'package:diary_management/features/routes/view/widgets/stores_list.dart';
 import 'package:diary_management/features/store/view_model/bloc/stores_bloc.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/core/components/custom_app_bar.dart';
 import 'package:diary_management/core/spaces/space.dart';
-import 'package:diary_management/features/authentication/services/services.dart';
+import 'package:diary_management/features/authentication/services/auth_services.dart';
 import 'package:diary_management/features/dashboard/widgets/dash_board_icons_row_widget.dart';
 import 'package:diary_management/features/dashboard/widgets/dashboard_card_row.dart';
 import 'package:diary_management/features/drivers/view_model/drivers_bloc/drivers_bloc.dart';

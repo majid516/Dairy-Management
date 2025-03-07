@@ -1,8 +1,9 @@
 import 'dart:developer';
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/core/components/custom_snackbar.dart';
-import 'package:diary_management/core/screen_size.dart';
-import 'package:diary_management/features/authentication/services/services.dart';
+import 'package:diary_management/core/constants/screen_size.dart';
+import 'package:diary_management/core/constants/strings.dart';
+import 'package:diary_management/features/authentication/services/auth_services.dart';
 import 'package:diary_management/features/dashboard/screen/dashboard.dart';
 import 'package:diary_management/features/driver_navigation/view/screens/driver_navigation_screen.dart';
 import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
@@ -31,11 +32,11 @@ class LoginButtonWidget extends StatelessWidget {
           return;
         }
      AuthServices().login(dName,dPass);
-        if (dName == 'a' && dPass == 'a') {
+        if (dName == adminName && dPass == adminPassword) {
           showCustomSnackBar(context, 'Admin login successfully', false);
           Navigator.of(
             context,
-          ).push(MaterialPageRoute(builder: (ctx) => DashboardScreen()));
+          ).pushReplacement(MaterialPageRoute(builder: (ctx) => DashboardScreen()));
           return;
         }
 
@@ -53,7 +54,7 @@ class LoginButtonWidget extends StatelessWidget {
 
         if (driver != null) {
           showCustomSnackBar(context, 'Login successfully', false);
-          Navigator.of(context).push(
+          Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (ctx) => DriverNavigationScreen(driver: driver!),
             ),

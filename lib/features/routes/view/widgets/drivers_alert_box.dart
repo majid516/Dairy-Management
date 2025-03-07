@@ -1,5 +1,5 @@
-import 'package:diary_management/core/colors.dart';
-import 'package:diary_management/core/screen_size.dart';
+import 'package:diary_management/core/constants/colors.dart';
+import 'package:diary_management/core/constants/screen_size.dart';
 import 'package:diary_management/features/drivers/view_model/drivers_bloc/drivers_bloc.dart';
 import 'package:diary_management/features/routes/model/route_group_model.dart';
 import 'package:diary_management/features/routes/view/widgets/alert_box_list_tile.dart';

@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/features/authentication/view/widgets/bottom_wave_clipper.dart';
 import 'package:diary_management/features/authentication/view/widgets/login_page_elements_widget.dart';
 import 'package:diary_management/features/authentication/view/widgets/top_wave_clipper.dart';

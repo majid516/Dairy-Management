@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/core/components/custom_app_bar.dart';
-import 'package:diary_management/features/authentication/services/services.dart';
+import 'package:diary_management/features/authentication/services/auth_services.dart';
 import 'package:diary_management/features/driver_navigation/view/widgets/driver_stores_list.dart';
 import 'package:diary_management/features/driver_navigation/view/widgets/map_with_polylin_widget.dart';
 import 'package:diary_management/features/driver_navigation/view/widgets/store_visit_data_box.dart';
@@ -41,7 +41,7 @@ class DriverNavigationScreen extends StatelessWidget {
       create:
           (context) =>
               NavigationBloc()..add(
-                NavigationEvent.fetchRoutes(driver?.id ?? driver2?.id ?? ''),
+                NavigationEvent.fetchRoutes(driver?.id ?? driver2?.id ?? 'No driver'),
               ),
       child: Scaffold(
         appBar: CustomAppBar(
@@ -58,6 +58,7 @@ class DriverNavigationScreen extends StatelessWidget {
         backgroundColor: MyColors.whiteColor,
         body: BlocBuilder<NavigationBloc, NavigationState>(
           builder: (context, state) {
+           
             return state.when(
               loading: () => const Center(child: CircularProgressIndicator()),
               loaded: (currentLocation, polylines, markers, stores) {

@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/core/spaces/space.dart';
 import 'package:flutter/material.dart';
 

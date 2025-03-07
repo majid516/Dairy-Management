@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/features/routes/view_model/cubit/route_cubit.dart';
 import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:flutter/material.dart';

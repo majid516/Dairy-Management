@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
 import 'package:diary_management/features/routes/model/route_group_model.dart';
 import 'package:diary_management/features/routes/view_model/bloc/route_group_bloc.dart';
@@ -36,7 +36,7 @@ class AlertBoxListTile extends StatelessWidget {
                 id: group.id,
               );
               context.read<RouteGroupBloc>().add(
-                RouteGroupEvent.update(updatedGroup),
+                RouteGroupEvent.updateGroup(updatedGroup),
               );
               Navigator.pop(context, driver.id);
             },

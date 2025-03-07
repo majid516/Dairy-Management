@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/features/store/view/widget/store_details_card_widget.dart';
 import 'package:diary_management/features/store/view_model/bloc/stores_bloc.dart';
 import 'package:flutter/material.dart';

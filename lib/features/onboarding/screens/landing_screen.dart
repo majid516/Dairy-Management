@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/features/onboarding/widgets/bottom_positional_stack.dart';
 import 'package:diary_management/features/onboarding/widgets/onboarding_elements.dart';
 import 'package:diary_management/features/onboarding/widgets/top_positional_stack.dart';

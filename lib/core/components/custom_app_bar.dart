@@ -1,6 +1,6 @@
 import 'dart:math';
-import 'package:diary_management/core/colors.dart';
-import 'package:diary_management/core/screen_size.dart';
+import 'package:diary_management/core/constants/colors.dart';
+import 'package:diary_management/core/constants/screen_size.dart';
 import 'package:diary_management/core/spaces/space.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

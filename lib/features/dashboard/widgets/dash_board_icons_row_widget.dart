@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/features/dashboard/widgets/dashboard_icon_card.dart';
 import 'package:diary_management/features/drivers/view/screens/drivers_screen.dart';
 import 'package:diary_management/features/routes/view/screens/routes_screen.dart';

@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
 import 'package:flutter/material.dart';
 

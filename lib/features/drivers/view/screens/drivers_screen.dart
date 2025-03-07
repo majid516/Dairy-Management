@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/core/components/custom_app_bar.dart';
 import 'package:diary_management/features/drivers/view/widgets/add_driver_button.dart';
 import 'package:diary_management/features/drivers/view/widgets/custom_driver_card.dart';

@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:diary_management/features/store/view/widget/list_trailing_widget.dart';
 import 'package:flutter/material.dart';

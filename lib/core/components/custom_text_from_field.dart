@@ -1,6 +1,4 @@
-import 'dart:developer';
-
-import 'package:diary_management/core/vlidators.dart';
+import 'package:diary_management/core/constants/vlidators.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFromField extends StatelessWidget {
@@ -8,7 +6,7 @@ class CustomTextFromField extends StatelessWidget {
   final String label;
   final bool obscureText;
   final TextInputType keyboardType;
-  
+
   const CustomTextFromField({
     super.key,
     required this.controller,
@@ -21,7 +19,7 @@ class CustomTextFromField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: (value) {
-        return FormValidators.commonValidator(value, message: 'Enter $label'); 
+        return FormValidators.commonValidator(value, message: 'Enter $label');
       },
       controller: controller,
       obscureText: obscureText,

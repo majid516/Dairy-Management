@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/core/components/custom_delete_update_icon.dart';
 import 'package:diary_management/features/store/model/store_model.dart';
 import 'package:diary_management/features/store/view/widget/add_store_screen.dart';

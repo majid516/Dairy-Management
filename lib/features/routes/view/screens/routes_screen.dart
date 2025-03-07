@@ -1,4 +1,4 @@
-import 'package:diary_management/core/colors.dart';
+import 'package:diary_management/core/constants/colors.dart';
 import 'package:diary_management/core/components/custom_app_bar.dart';
 import 'package:diary_management/features/routes/view/screens/routes_group_screen.dart';
 import 'package:diary_management/features/routes/view/widgets/route_screen_elements.dart';

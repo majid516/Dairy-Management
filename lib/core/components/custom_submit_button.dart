@@ -1,5 +1,5 @@
-import 'package:diary_management/core/colors.dart';
-import 'package:diary_management/core/screen_size.dart';
+import 'package:diary_management/core/constants/colors.dart';
+import 'package:diary_management/core/constants/screen_size.dart';
 import 'package:flutter/material.dart';
 
 class CustomSubmitButton extends StatelessWidget {

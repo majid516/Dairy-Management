@@ -1,7 +1,7 @@
 import 'package:diary_management/core/components/custom_snackbar.dart';
 import 'package:diary_management/core/components/custom_submit_button.dart';
 import 'package:diary_management/core/services/generate_id.dart';
-import 'package:diary_management/core/vlidators.dart';
+import 'package:diary_management/core/constants/vlidators.dart';
 import 'package:diary_management/features/drivers/model/driver_hive_model.dart';
 import 'package:diary_management/features/drivers/view_model/drivers_bloc/drivers_bloc.dart';
 import 'package:flutter/material.dart';
